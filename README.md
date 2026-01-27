@@ -1,2 +1,3 @@
-# claude.code
-클로드 코드(Claude Code)
+# profile 사이트
+
+profile 소윤호 | GospelFix
