@@ -27,7 +27,7 @@ body::before {
   content: "";
   position: fixed;
   top: 50%;
-  left: 25%;
+  left: 50%;
   transform: translate(-50%, -50%);
   width: 300px;
   height: 300px;
@@ -48,21 +48,31 @@ body::before {
 }
 
 @keyframes float {
-  0%,
-  100% {
-    transform: translate(-50%, -50%) translateY(0px) scale(1);
+  0% {
+    transform: translate(-50%, -50%) translateY(0px) translateX(0px) rotate(0deg) scale(1);
+  }
+  25% {
+    transform: translate(-50%, -50%) translateY(-50px) translateX(50px) rotate(90deg) scale(1.15);
   }
   50% {
-    transform: translate(-50%, -50%) translateY(-60px) scale(1.1);
+    transform: translate(-50%, -50%) translateY(0px) translateX(0px) rotate(180deg) scale(1.2);
+  }
+  75% {
+    transform: translate(-50%, -50%) translateY(50px) translateX(-50px) rotate(270deg) scale(1.15);
+  }
+  100% {
+    transform: translate(-50%, -50%) translateY(0px) translateX(0px) rotate(360deg) scale(1);
   }
 }
 
 .container {
-  max-width: 480px;
+  max-width: 390px;
   margin: 0 auto;
   padding: 0 0 40px;
   min-height: 100vh;
-  background: #000;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   position: relative;
   z-index: 1;
 }
@@ -546,7 +556,7 @@ body::before {
 }
 
 /* Responsive - Tablet (가운데 정렬) */
-@media (min-width: 481px) {
+@media (min-width: 768px) {
   .container {
     margin: 40px auto;
     border-radius: 24px;
@@ -556,11 +566,14 @@ body::before {
   }
 }
 
-/* Responsive - PC (오른쪽 1/4 위치) */
-@media (min-width: 1025px) {
+/* Responsive - Desktop (오른쪽 1/4 위치) */
+@media (min-width: 1200px) {
+  body::before {
+    left: 25%;
+  }
   .container {
     margin-left: auto;
-    margin-right: calc(25% - 240px);
+    margin-right: calc(25% - 195px);
   }
 }
 

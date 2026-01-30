@@ -26,9 +26,19 @@
 
 ## 레이아웃
 
-- **모바일 우선**: 기본 최대 너비 480px
-- **데스크톱**: 481px 이상에서 카드형 레이아웃
-- **터치 영역**: 최소 44px
+### 반응형 Breakpoints
+
+| 디바이스 | 너비     |
+| -------- | -------- |
+| Mobile   | ~ 390px  |
+| Tablet   | 768px ~  |
+| Desktop  | 1200px ~ |
+
+### 기본 설정
+
+- **모바일 우선**: 기본 최대 너비 390px
+- **태블릿**: 768px 이상에서 카드형 레이아웃
+- **데스크톱**: 1200px 이상에서 확대된 레이아웃
 - **배경**: 순수 검정 (#000)
 
 ---
@@ -70,27 +80,31 @@
 
 ### 색상
 
-| 용도           | 변수명                      | 색상코드                      |
-| -------------- | --------------------------- | ----------------------------- |
-| 배경           | `--color-bg`                | `#000000`                     |
-| 카드 배경      | `--color-card`              | `rgba(255, 255, 255, 0.05)`   |
-| 카드 테두리    | `--color-border`            | `rgba(255, 255, 255, 0.08)`   |
-| 텍스트         | `--color-text`              | `#ffffff`                     |
-| 보조 텍스트    | `--color-text-secondary`    | `rgba(255, 255, 255, 0.5)`    |
-| 비활성 텍스트  | `--color-text-muted`        | `rgba(255, 255, 255, 0.3)`    |
-| 액센트 (보라)  | `--color-accent`            | `#a78bfa`                     |
-| 액센트 (파랑)  | `--color-accent-blue`       | `#60a5fa`                     |
-| 액센트 (초록)  | `--color-accent-green`      | `#4ade80`                     |
-| 액센트 (핑크)  | `--color-accent-pink`       | `#f472b6`                     |
-| 액센트 (주황)  | `--color-accent-orange`     | `#fb923c`                     |
-| 액센트 (노랑)  | `--color-accent-yellow`     | `#fbbf24`                     |
+| 용도          | 변수명                   | 색상코드                    |
+| ------------- | ------------------------ | --------------------------- |
+| 배경          | `--color-bg`             | `#000000`                   |
+| 카드 배경     | `--color-card`           | `rgba(255, 255, 255, 0.05)` |
+| 카드 테두리   | `--color-border`         | `rgba(255, 255, 255, 0.08)` |
+| 텍스트        | `--color-text`           | `#ffffff`                   |
+| 보조 텍스트   | `--color-text-secondary` | `rgba(255, 255, 255, 0.5)`  |
+| 비활성 텍스트 | `--color-text-muted`     | `rgba(255, 255, 255, 0.3)`  |
+| 액센트 (보라) | `--color-accent`         | `#a78bfa`                   |
+| 액센트 (파랑) | `--color-accent-blue`    | `#60a5fa`                   |
+| 액센트 (초록) | `--color-accent-green`   | `#4ade80`                   |
+| 액센트 (핑크) | `--color-accent-pink`    | `#f472b6`                   |
+| 액센트 (주황) | `--color-accent-orange`  | `#fb923c`                   |
+| 액센트 (노랑) | `--color-accent-yellow`  | `#fbbf24`                   |
 
 ### 타이포그래피
 
 #### 폰트 패밀리
 
 ```css
-font-family: "Inter", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+font-family:
+  "Inter",
+  -apple-system,
+  BlinkMacSystemFont,
+  "Apple SD Gothic Neo",
   sans-serif;
 ```
 
@@ -99,49 +113,49 @@ font-family: "Inter", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
 
 #### 폰트 크기
 
-| 토큰         | 크기   | 용도                 |
-| ------------ | ------ | -------------------- |
-| `--text-xs`  | 10px   | 태그, 배지           |
-| `--text-sm`  | 12px   | 캡션, 보조 텍스트    |
-| `--text-md`  | 13px   | 본문 보조            |
-| `--text-base`| 15px   | 본문 기본            |
-| `--text-lg`  | 16px   | 강조 본문            |
-| `--text-xl`  | 20px   | 소제목 (h3)          |
-| `--text-2xl` | 24px   | 중제목 (h2)          |
+| 토큰          | 크기 | 용도              |
+| ------------- | ---- | ----------------- |
+| `--text-xs`   | 10px | 태그, 배지        |
+| `--text-sm`   | 12px | 캡션, 보조 텍스트 |
+| `--text-md`   | 13px | 본문 보조         |
+| `--text-base` | 15px | 본문 기본         |
+| `--text-lg`   | 16px | 강조 본문         |
+| `--text-xl`   | 20px | 소제목 (h3)       |
+| `--text-2xl`  | 24px | 중제목 (h2)       |
 
 #### 폰트 웨이트
 
-| 토큰              | 값  | 용도           |
-| ----------------- | --- | -------------- |
-| `--font-regular`  | 400 | 본문 기본      |
-| `--font-medium`   | 500 | 약간 강조      |
-| `--font-semibold` | 600 | 제목, 강조     |
-| `--font-bold`     | 700 | 강한 강조      |
+| 토큰              | 값  | 용도       |
+| ----------------- | --- | ---------- |
+| `--font-regular`  | 400 | 본문 기본  |
+| `--font-medium`   | 500 | 약간 강조  |
+| `--font-semibold` | 600 | 제목, 강조 |
+| `--font-bold`     | 700 | 강한 강조  |
 
 #### 줄 간격
 
-| 토큰              | 값   | 용도           |
-| ----------------- | ---- | -------------- |
-| `--leading-tight` | 1.25 | 제목           |
-| `--leading-snug`  | 1.4  | 짧은 텍스트    |
-| `--leading-base`  | 1.5  | 본문 기본      |
-| `--leading-loose` | 1.7  | 긴 본문        |
+| 토큰              | 값   | 용도        |
+| ----------------- | ---- | ----------- |
+| `--leading-tight` | 1.25 | 제목        |
+| `--leading-snug`  | 1.4  | 짧은 텍스트 |
+| `--leading-base`  | 1.5  | 본문 기본   |
+| `--leading-loose` | 1.7  | 긴 본문     |
 
 ### 스페이싱 시스템
 
 > 4px 베이스 스케일 사용
 
-| 토큰          | 값    | 용도                    |
-| ------------- | ----- | ----------------------- |
-| `--space-1`   | 4px   | 아이콘-텍스트 간격      |
-| `--space-2`   | 8px   | 요소 내부 작은 여백     |
-| `--space-3`   | 12px  | 요소 내부 중간 여백     |
-| `--space-4`   | 16px  | 요소 간 기본 간격       |
-| `--space-5`   | 20px  | 그룹 간 간격            |
-| `--space-6`   | 24px  | 섹션 내부 여백          |
-| `--space-8`   | 32px  | 섹션 간 간격            |
-| `--space-10`  | 40px  | 큰 섹션 구분            |
-| `--space-12`  | 48px  | 페이지 여백             |
+| 토큰         | 값   | 용도                |
+| ------------ | ---- | ------------------- |
+| `--space-1`  | 4px  | 아이콘-텍스트 간격  |
+| `--space-2`  | 8px  | 요소 내부 작은 여백 |
+| `--space-3`  | 12px | 요소 내부 중간 여백 |
+| `--space-4`  | 16px | 요소 간 기본 간격   |
+| `--space-5`  | 20px | 그룹 간 간격        |
+| `--space-6`  | 24px | 섹션 내부 여백      |
+| `--space-8`  | 32px | 섹션 간 간격        |
+| `--space-10` | 40px | 큰 섹션 구분        |
+| `--space-12` | 48px | 페이지 여백         |
 
 #### 컨테이너 패딩
 
@@ -352,7 +366,11 @@ padding: var(--space-6); /* 24px */
 
 /* 인스타그램 */
 .icon-box.instagram {
-  background: linear-gradient(135deg, rgba(236, 72, 153, 0.15) 0%, rgba(239, 68, 68, 0.15) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(236, 72, 153, 0.15) 0%,
+    rgba(239, 68, 68, 0.15) 100%
+  );
   color: var(--color-accent-pink);
 }
 
