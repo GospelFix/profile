@@ -225,68 +225,16 @@
       </div>
 
       <!-- 포트폴리오 섹션 -->
-      <div class="section">
-        <h2 class="section-title">포트폴리오</h2>
-        <div class="card">
-          <a href="javascript:void(0);" class="list-item">
-            <div class="item-icon web">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <line x1="2" y1="12" x2="22" y2="12" />
-                <path
-                  d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-                />
-              </svg>
-            </div>
-            <div class="item-content">
-              <span class="item-label">웹사이트</span>
-              <span class="item-value preparing">준비중</span>
-            </div>
-            <div class="item-arrow">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <polyline points="9 18 15 12 9 6" />
-              </svg>
-            </div>
-          </a>
-          <a href="https://triplexlab.tistory.com" class="list-item">
-            <div class="item-icon blog">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M12 19l7-7 3 3-7 7-3-3z" />
-                <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
-                <path d="M2 2l7.586 7.586" />
-                <circle cx="11" cy="11" r="2" />
-              </svg>
-            </div>
-            <div class="item-content">
-              <span class="item-label">블로그</span>
-              <span class="item-value">기술 블로그</span>
-            </div>
-            <div class="item-arrow">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <polyline points="9 18 15 12 9 6" />
-              </svg>
-            </div>
-          </a>
+      <div class="section portfolio-section">
+        <div class="section-header">
+          <h2 class="section-title">포트폴리오</h2>
+        </div>
+        <div class="swiper portfolio-swiper">
+          <div class="swiper-wrapper" id="portfolioCards">
+            <!-- JSON 데이터로 동적 생성 -->
+          </div>
+          <!-- 페이지네이션 -->
+          <div class="swiper-pagination"></div>
         </div>
       </div>
 
@@ -438,8 +386,103 @@
         }
       }
 
+      // Portfolio Cards 동적 렌더링
+      async function loadPortfolioCards() {
+        try {
+          const response = await fetch("./data/portfolio-cards.json");
+          const cards = await response.json();
+          const container = document.getElementById("portfolioCards");
+
+          cards.forEach((card) => {
+            const slide = document.createElement("div");
+            slide.className = "swiper-slide";
+
+            // 이미지 영역 생성 (이미지 타입 vs 아이콘 타입)
+            let imageHtml = "";
+            if (card.imageType === "image" && card.imageUrl) {
+              imageHtml = `
+                <div class="ministry-card-image has-image">
+                  <img src="${card.imageUrl}" alt="${card.title}" />
+                </div>
+              `;
+            } else if (card.icon) {
+              let pathsHtml = "";
+              if (card.icon.paths) {
+                pathsHtml += card.icon.paths
+                  .map((d) => `<path d="${d}" />`)
+                  .join("");
+              }
+              if (card.icon.circles) {
+                pathsHtml += card.icon.circles
+                  .map((c) => `<circle cx="${c.cx}" cy="${c.cy}" r="${c.r}" />`)
+                  .join("");
+              }
+              imageHtml = `
+                <div class="ministry-card-image">
+                  <svg viewBox="${card.icon.viewBox}" fill="none" stroke="currentColor" stroke-width="1.5">
+                    ${pathsHtml}
+                  </svg>
+                </div>
+              `;
+            }
+
+            // 태그 생성
+            const tagsHtml = card.tags
+              .map(
+                (tag, i) =>
+                  `<span class="tag ${i === 0 ? "tag-primary" : "tag-outline"}">${tag}</span>`,
+              )
+              .join("");
+
+            // 타이틀 생성
+            const titleHtml = card.titleSuffix
+              ? `<span class="highlight">${card.title}</span>${card.titleSuffix}`
+              : `<span class="highlight">${card.title}</span>`;
+
+            // 외부 링크 여부
+            const isExternal = card.link.startsWith("http");
+
+            // 날짜 생성
+            const dateHtml = card.date
+              ? `<p class="ministry-card-date">${card.date}</p>`
+              : "";
+
+            slide.innerHTML = `
+              <a href="${card.link}" class="ministry-card-link" ${isExternal ? 'target="_blank"' : ""}>
+                ${imageHtml}
+                <div class="ministry-card-content">
+                  <p class="ministry-card-subtitle">${card.subtitle}</p>
+                  <h3 class="ministry-card-title">${titleHtml}</h3>
+                  ${dateHtml}
+                  <p class="ministry-card-info">${card.info}</p>
+                  <div class="ministry-card-tags">${tagsHtml}</div>
+                </div>
+              </a>
+            `;
+
+            container.appendChild(slide);
+          });
+
+          // Swiper 초기화
+          new Swiper(".portfolio-swiper", {
+            slidesPerView: "auto",
+            spaceBetween: 16,
+            centeredSlides: false,
+            pagination: {
+              el: ".portfolio-swiper .swiper-pagination",
+              clickable: true,
+            },
+          });
+        } catch (error) {
+          console.error("Failed to load portfolio cards:", error);
+        }
+      }
+
       // DOM 로드 후 실행
-      document.addEventListener("DOMContentLoaded", loadMinistryCards);
+      document.addEventListener("DOMContentLoaded", () => {
+        loadMinistryCards();
+        loadPortfolioCards();
+      });
     </script>
   </body>
 </html>

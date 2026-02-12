@@ -1,18 +1,6 @@
 [
   {
     "id": 1,
-    "title": "준비중",
-    "titleSuffix": " 입니다!",
-    "subtitle": "",
-    "date": "",
-    "info": "",
-    "link": "javascript:void(0);",
-    "tags": ["준비중", "Coming Soon"],
-    "imageType": "image",
-    "imageUrl": "./img/cards/default.png"
-  },
-  {
-    "id": 2,
     "title": "사랑의 언어 도장판",
     "titleSuffix": "",
     "subtitle": "LOVE in Action",
@@ -24,7 +12,7 @@
     "imageUrl": "./img/cards/thumbnail-2.png"
   },
   {
-    "id": 3,
+    "id": 2,
     "title": "LOVE in Action",
     "titleSuffix": "",
     "subtitle": "강청 수련회",
@@ -34,5 +22,17 @@
     "tags": ["수련회", "신청하기"],
     "imageType": "image",
     "imageUrl": "./img/cards/thumbnail-1.png"
+  },
+  {
+    "id": 3,
+    "title": "준비중",
+    "titleSuffix": " 입니다!",
+    "subtitle": "",
+    "date": "",
+    "info": "",
+    "link": "javascript:void(0);",
+    "tags": ["준비중", "Coming Soon"],
+    "imageType": "image",
+    "imageUrl": "./img/cards/default.png"
   }
 ]

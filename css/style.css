@@ -244,31 +244,37 @@ body::before {
   color: #fff;
 }
 
-/* Ministry Section with Swiper */
-.ministry-section {
+/* Ministry & Portfolio Section with Swiper */
+.ministry-section,
+.portfolio-section {
   overflow: hidden;
 }
 
-.ministry-swiper {
+.ministry-swiper,
+.portfolio-swiper {
   padding: 0 20px 40px 20px !important;
   overflow: visible;
 }
 
-.ministry-swiper .swiper-slide {
+.ministry-swiper .swiper-slide,
+.portfolio-swiper .swiper-slide {
   width: 260px;
   height: auto;
 }
 
-.ministry-swiper .swiper-pagination {
+.ministry-swiper .swiper-pagination,
+.portfolio-swiper .swiper-pagination {
   bottom: 8px;
 }
 
-.ministry-swiper .swiper-pagination-bullet {
+.ministry-swiper .swiper-pagination-bullet,
+.portfolio-swiper .swiper-pagination-bullet {
   background: rgba(255, 255, 255, 0.3);
   opacity: 1;
 }
 
-.ministry-swiper .swiper-pagination-bullet-active {
+.ministry-swiper .swiper-pagination-bullet-active,
+.portfolio-swiper .swiper-pagination-bullet-active {
   background: #fff;
 }
 
