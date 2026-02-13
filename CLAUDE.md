@@ -14,29 +14,29 @@
 
 ## 규칙
 
-1. 기술 스택은 `config/mvp-stack.yaml` 참조
-2. 디자인 시스템은 `config/design-system.md` 참조
-3. 작업 지시문은 `prompt/*.md` 파일로 분리
+1. 기술 스택은 `@config/mvp-stack.yaml` 참조
+2. 디자인 시스템은 `@config/design-system.md` 참조
+3. 작업 지시문은 `@prompt/*.md` 파일로 분리
 4. MVP 수준 유지 - 최소 기능으로 빠르게 검증
 
 ---
 
 ## 작업 지시문 목록
 
-| 파일                          | 설명                 |
-| ----------------------------- | -------------------- |
-| `prompt/mvp-rules.md`         | MVP 개발 규칙        |
-| `prompt/extended-rules.md`    | 확장 단계 개발 규칙  |
-| `prompt/create-check-list.md` | 체크리스트 생성 작업 |
+| 파일                           | 설명                 |
+| ------------------------------ | -------------------- |
+| `@prompt/mvp-rules.md`         | MVP 개발 규칙        |
+| `@prompt/extended-rules.md`    | 확장 단계 개발 규칙  |
+| `@prompt/create-check-list.md` | 체크리스트 생성 작업 |
 
 ---
 
 ## 개발 규칙
 
-> 📁 MVP 단계: `prompt/mvp-rules.md` 및 `config/mvp-stack.yaml` 참조
+> 📁 MVP 단계: `@prompt/mvp-rules.md` 및 `@config/mvp-stack.yaml` 참조
 
 ---
 
 ## 확장 단계
 
-> ⚠️ MVP 완료 후 확장 시 `prompt/extended-rules.md` 및 `config/extended-stack.yaml` 참조
+> ⚠️ MVP 완료 후 확장 시 `@prompt/extended-rules.md` 및 `@config/extended-stack.yaml` 참조

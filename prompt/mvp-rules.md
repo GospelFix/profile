@@ -6,7 +6,7 @@
 
 ## 기술 스택
 
-> 📁 참조: `config/mvp-stack.yaml`
+> 📁 참조: `@config/mvp-stack.yaml`
 
 ---
 
@@ -104,7 +104,7 @@ const analyzeMenu = async (imageBase64) => {
           },
         ],
       }),
-    }
+    },
   );
   return response.json();
 };
