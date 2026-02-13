@@ -6,6 +6,70 @@ const CardsModule = (() => {
   'use strict';
 
   /**
+   * HTML 이스케이핑 (XSS 방지)
+   * @param {string} text - 이스케이프할 텍스트
+   * @returns {string} 이스케이프된 텍스트
+   */
+  const escapeHtml = (text) => {
+    const map = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#039;'
+    };
+    return String(text).replace(/[&<>"']/g, (char) => map[char]);
+  };
+
+  /**
+   * 데이터 검증 (필수 필드 확인)
+   * @param {Object} card - 카드 데이터 객체
+   * @returns {Object} { isValid: boolean, error: string|null }
+   */
+  const validateCard = (card) => {
+    if (!card || typeof card !== 'object') {
+      return { isValid: false, error: '카드 데이터가 유효하지 않습니다' };
+    }
+
+    const requiredFields = ['title', 'subtitle', 'info', 'link', 'tags'];
+    const missingFields = requiredFields.filter((field) => !card[field]);
+
+    if (missingFields.length > 0) {
+      return {
+        isValid: false,
+        error: `필수 필드 누락: ${missingFields.join(', ')}`
+      };
+    }
+
+    if (!Array.isArray(card.tags)) {
+      return { isValid: false, error: '태그는 배열이어야 합니다' };
+    }
+
+    return { isValid: true, error: null };
+  };
+
+  /**
+   * 데이터 정규화 (기본값 설정)
+   * @param {Object} card - 카드 데이터 객체
+   * @returns {Object} 정규화된 카드 데이터
+   */
+  const normalizeCard = (card) => {
+    return {
+      ...card,
+      title: card.title || '',
+      subtitle: card.subtitle || '',
+      info: card.info || '',
+      link: card.link || '#',
+      tags: Array.isArray(card.tags) ? card.tags : [],
+      date: card.date || null,
+      titleSuffix: card.titleSuffix || null,
+      imageType: card.imageType || null,
+      imageUrl: card.imageUrl || null,
+      icon: card.icon || null
+    };
+  };
+
+  /**
    * SVG 경로를 렌더링 HTML로 변환
    * @param {Object} icon - 아이콘 데이터 객체
    * @returns {string} HTML 문자열
@@ -35,18 +99,23 @@ const CardsModule = (() => {
    */
   const renderCardImage = (card) => {
     if (card.imageType === 'image' && card.imageUrl) {
+      const escapedUrl = escapeHtml(card.imageUrl);
+      const escapedTitle = escapeHtml(card.title || '');
+
       return `
         <div class="ministry-card-image has-image">
-          <img src="${card.imageUrl}" alt="${card.title}" />
+          <img src="${escapedUrl}" alt="${escapedTitle}" />
         </div>
       `;
     }
 
-    if (card.icon) {
+    if (card.icon && card.icon.viewBox) {
       const pathsHtml = renderIconPaths(card.icon);
+      const escapedViewBox = escapeHtml(card.icon.viewBox);
+
       return `
         <div class="ministry-card-image">
-          <svg viewBox="${card.icon.viewBox}" fill="none" stroke="currentColor" stroke-width="1.5">
+          <svg viewBox="${escapedViewBox}" fill="none" stroke="currentColor" stroke-width="1.5">
             ${pathsHtml}
           </svg>
         </div>
@@ -62,10 +131,14 @@ const CardsModule = (() => {
    * @returns {string} HTML 문자열
    */
   const renderTags = (tags) => {
+    if (!Array.isArray(tags) || tags.length === 0) {
+      return '';
+    }
+
     return tags
       .map(
         (tag, i) =>
-          `<span class="tag ${i === 0 ? 'tag-primary' : 'tag-outline'}">${tag}</span>`
+          `<span class="tag ${i === 0 ? 'tag-primary' : 'tag-outline'}">${escapeHtml(tag)}</span>`
       )
       .join('');
   };
@@ -76,9 +149,10 @@ const CardsModule = (() => {
    * @returns {string} HTML 문자열
    */
   const renderTitle = (card) => {
-    const titleContent = `<span class="highlight">${card.title}</span>`;
+    const escapedTitle = escapeHtml(card.title || '');
+    const titleContent = `<span class="highlight">${escapedTitle}</span>`;
 
-    return card.titleSuffix ? `${titleContent}${card.titleSuffix}` : titleContent;
+    return card.titleSuffix ? `${titleContent}${escapeHtml(card.titleSuffix)}` : titleContent;
   };
 
   /**
@@ -88,7 +162,7 @@ const CardsModule = (() => {
    */
   const renderDate = (card) => {
     return card.date
-      ? `<p class="ministry-card-date">${card.date}</p>`
+      ? `<p class="ministry-card-date">${escapeHtml(card.date)}</p>`
       : '';
   };
 
@@ -98,21 +172,35 @@ const CardsModule = (() => {
    * @returns {string} HTML 문자열
    */
   const renderCardHTML = (card) => {
-    const imageHtml = renderCardImage(card);
-    const tagsHtml = renderTags(card.tags);
-    const titleHtml = renderTitle(card);
-    const dateHtml = renderDate(card);
-    const isExternal = card.link.startsWith('http');
+    // 데이터 정규화
+    const normalizedCard = normalizeCard(card);
+
+    // 데이터 검증
+    const validation = validateCard(normalizedCard);
+    if (!validation.isValid) {
+      console.warn(`카드 데이터 검증 실패: ${validation.error}`, card);
+      return ''; // 유효하지 않은 데이터는 렌더링하지 않음
+    }
+
+    const imageHtml = renderCardImage(normalizedCard);
+    const tagsHtml = renderTags(normalizedCard.tags);
+    const titleHtml = renderTitle(normalizedCard);
+    const dateHtml = renderDate(normalizedCard);
+
+    const isExternal = normalizedCard.link.startsWith('http');
     const targetAttr = isExternal ? 'target="_blank"' : '';
+    const escapedLink = escapeHtml(normalizedCard.link);
+    const escapedSubtitle = escapeHtml(normalizedCard.subtitle);
+    const escapedInfo = escapeHtml(normalizedCard.info);
 
     return `
-      <a href="${card.link}" class="ministry-card-link" ${targetAttr}>
+      <a href="${escapedLink}" class="ministry-card-link" ${targetAttr}>
         ${imageHtml}
         <div class="ministry-card-content">
-          <p class="ministry-card-subtitle">${card.subtitle}</p>
+          <p class="ministry-card-subtitle">${escapedSubtitle}</p>
           <h3 class="ministry-card-title">${titleHtml}</h3>
           ${dateHtml}
-          <p class="ministry-card-info">${card.info}</p>
+          <p class="ministry-card-info">${escapedInfo}</p>
           <div class="ministry-card-tags">${tagsHtml}</div>
         </div>
       </a>
