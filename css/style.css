@@ -239,7 +239,8 @@ body::before {
   flex-shrink: 0;
 }
 
-.item-icon svg {
+.item-icon svg,
+.item-icon img {
   width: 20px;
   height: 20px;
 }
@@ -250,9 +251,15 @@ body::before {
 .item-icon.github,
 .item-icon.linkedin,
 .item-icon.web,
-.item-icon.blog {
+.item-icon.blog,
+.item-icon.website {
   background: rgba(255, 255, 255, 0.1);
   color: #fff;
+}
+
+.item-icon.website img {
+  width: 30px;
+  height: 30px;
 }
 
 /* Ministry & Portfolio Section with Swiper */
