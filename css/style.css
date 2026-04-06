@@ -248,14 +248,15 @@ body::before {
 .item-icon.email,
 .item-icon.phone,
 .item-icon.instagram,
-.item-icon.github,
 .item-icon.linkedin,
 .item-icon.web,
 .item-icon.blog,
-.item-icon.website {
+.item-icon.website,
+.item-icon.kakao {
   background: rgba(255, 255, 255, 0.1);
   color: #fff;
 }
+
 
 .item-icon.website img {
   width: 30px;
