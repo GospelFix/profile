@@ -178,32 +178,9 @@ const App = (() => {
     }, duration);
   };
 
-  /**
-   * 카카오 채널 딥링크 처리 (모바일: 앱 열기 시도 → 웹 폴백)
-   * @param {string} channelId - 카카오 채널 ID (예: _CqKlX)
-   * @param {string} webUrl - 앱 미설치 시 폴백 웹 URL
-   */
-  const openKakaoChannel = (channelId, webUrl) => {
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-    if (!isMobile) {
-      window.open(webUrl, '_blank');
-      return;
-    }
-
-    // 앱 실행 시도
-    window.location.href = `kakaotalk://plusfriend/home/${channelId}`;
-
-    // 앱이 없으면 웹으로 폴백 (1.5초 후)
-    setTimeout(() => {
-      window.location.href = webUrl;
-    }, 1500);
-  };
-
   // Public API
   return {
-    init,
-    openKakaoChannel
+    init
   };
 })();
 
