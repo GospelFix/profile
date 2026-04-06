@@ -9,7 +9,7 @@
     "link": "https://gbc-sys.github.io/gangcheong/mission",
     "tags": ["미션", "도장판"],
     "imageType": "image",
-    "imageUrl": "./img/cards/thumbnail-2.png"
+    "imageUrl": "./assets/images/cards/thumbnail-2.png"
   },
   {
     "id": 2,
@@ -21,7 +21,7 @@
     "link": "https://gbc-sys.github.io/gangcheong/exaction",
     "tags": ["수련회", "신청하기"],
     "imageType": "image",
-    "imageUrl": "./img/cards/thumbnail-1.png"
+    "imageUrl": "./assets/images/cards/thumbnail-1.png"
   },
   {
     "id": 3,
@@ -33,6 +33,6 @@
     "link": "javascript:void(0);",
     "tags": ["준비중", "Coming Soon"],
     "imageType": "image",
-    "imageUrl": "./img/cards/default.png"
+    "imageUrl": "./assets/images/cards/default.png"
   }
 ]

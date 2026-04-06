@@ -9,7 +9,7 @@
     "link": "https://deartintsanta.com",
     "tags": ["브랜드", "쇼핑몰"],
     "imageType": "image",
-    "imageUrl": "./img/portfolio/deartintsanta.jpg"
+    "imageUrl": "./assets/images/portfolio/deartintsanta.jpg"
   },
   {
     "id": 2,
@@ -21,7 +21,7 @@
     "link": "http://yezakeumak.com",
     "tags": ["음악", "신문사"],
     "imageType": "image",
-    "imageUrl": "./img/portfolio/yezakeumak.jpg"
+    "imageUrl": "./assets/images/portfolio/yezakeumak.jpg"
   },
   {
     "id": 3,
@@ -33,6 +33,6 @@
     "link": "javascript:void(0);",
     "tags": ["준비중", "Coming Soon"],
     "imageType": "image",
-    "imageUrl": "./img/cards/default.png"
+    "imageUrl": "./assets/images/cards/default.png"
   }
 ]
