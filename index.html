@@ -48,7 +48,7 @@
     />
     <meta
       property="og:image"
-      content="https://gospelfix.github.io/profile/img/gospelfix.jpg"
+      content="https://gospelfix.github.io/profile/assets/images/gospelfix.jpg"
     />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -71,7 +71,7 @@
     />
     <meta
       name="twitter:image"
-      content="https://gospelfix.github.io/profile/img/gospelfix.jpg"
+      content="https://gospelfix.github.io/profile/assets/images/gospelfix.jpg"
     />
     <meta
       name="twitter:image:alt"
@@ -82,9 +82,9 @@
     <link rel="canonical" href="https://gospelfix.com" />
 
     <!-- 파비콘 -->
-    <link rel="icon" type="image/x-icon" href="./img/symbol.ico" />
-    <link rel="shortcut icon" type="image/x-icon" href="./img/symbol.ico" />
-    <link rel="apple-touch-icon" href="./img/symbol.ico" />
+    <link rel="icon" type="image/x-icon" href="./assets/images/symbol.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="./assets/images/symbol.ico" />
+    <link rel="apple-touch-icon" href="./assets/images/symbol.ico" />
 
     <!-- 모바일 테마 색상 -->
     <meta name="theme-color" content="#000000" />
@@ -102,7 +102,7 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <!-- Swiper CSS -->
     <link
       rel="stylesheet"
@@ -115,7 +115,7 @@
       <div class="profile-card">
         <div class="profile-header">
           <div class="profile-image">
-            <img src="./img/propil.jpeg" alt="프로필" id="profileImg" />
+            <img src="./assets/images/propil.jpeg" alt="프로필" id="profileImg" />
           </div>
           <div class="profile-info">
             <h1 class="profile-name">소윤호</h1>
@@ -219,7 +219,7 @@
             rel="noopener noreferrer"
           >
             <div class="item-icon website">
-              <img src="./img/symbol.svg" alt="GospelFix symbol" />
+              <img src="./assets/images/symbol.svg" alt="GospelFix symbol" />
             </div>
             <div class="item-content">
               <span class="item-label">GospelFix 공식 홈페이지</span>
@@ -355,17 +355,17 @@
       </footer>
     </div>
 
-    <script src="./js/app.js"></script>
+    <script src="./assets/js/app.js"></script>
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <!-- Cards Module -->
-    <script src="./js/cards.js"></script>
+    <script src="./assets/js/cards.js"></script>
     <script>
       // DOM 로드 후 카드 데이터 로드
       document.addEventListener("DOMContentLoaded", () => {
         // 교회 사역 카드 로드
         CardsModule.loadCards({
-          dataUrl: "./data/ministry-cards.json",
+          dataUrl: "./assets/data/ministry-cards.json",
           containerId: "ministryCards",
           swiperSelector: ".ministry-swiper",
           errorMessage: "교회 사역 카드를 불러올 수 없습니다",
@@ -373,7 +373,7 @@
 
         // 포트폴리오 카드 로드
         CardsModule.loadCards({
-          dataUrl: "./data/portfolio-cards.json",
+          dataUrl: "./assets/data/portfolio-cards.json",
           containerId: "portfolioCards",
           swiperSelector: ".portfolio-swiper",
           errorMessage: "포트폴리오를 불러올 수 없습니다",

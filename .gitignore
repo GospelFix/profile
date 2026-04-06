@@ -1,3 +1,7 @@
+# 환경 변수 및 시크릿
+secrets/
+!secrets/.env.example
+
 # Logs
 logs
 *.log
