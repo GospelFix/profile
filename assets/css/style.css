@@ -490,22 +490,29 @@ body::before {
   height: 16px;
 }
 
-/* Contact Button */
+/* Contact Button — 하단 고정 플로팅 버튼 */
 .contact-button {
+  position: fixed;
+  bottom: 72px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  width: calc(100% - 48px);
-  margin: 24px auto 0;
+  width: calc(min(100vw, 390px) - 48px);
   padding: 16px 24px;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   color: #000;
   border: none;
-  border-radius: 12px;
+  border-radius: 16px;
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), 0 2px 8px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease;
 }
 
@@ -519,10 +526,10 @@ body::before {
   height: 18px;
 }
 
-/* Footer */
+/* Footer — 플로팅 버튼 높이(약 56px) + 여백(28px) 확보 */
 .footer {
   text-align: center;
-  padding: 32px 24px;
+  padding: 32px 24px 110px;
   color: rgba(255, 255, 255, 0.3);
   font-size: 12px;
 }
@@ -611,5 +618,7 @@ body::before {
 
   .contact-button:hover {
     background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.25);
   }
 }

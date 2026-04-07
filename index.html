@@ -83,7 +83,11 @@
 
     <!-- 파비콘 -->
     <link rel="icon" type="image/x-icon" href="./assets/images/symbol.ico" />
-    <link rel="shortcut icon" type="image/x-icon" href="./assets/images/symbol.ico" />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="./assets/images/symbol.ico"
+    />
     <link rel="apple-touch-icon" href="./assets/images/symbol.ico" />
 
     <!-- 모바일 테마 색상 -->
@@ -115,7 +119,11 @@
       <div class="profile-card">
         <div class="profile-header">
           <div class="profile-image">
-            <img src="./assets/images/propil.jpeg" alt="프로필" id="profileImg" />
+            <img
+              src="./assets/images/propil.jpeg"
+              alt="프로필"
+              id="profileImg"
+            />
           </div>
           <div class="profile-info">
             <h1 class="profile-name">소윤호</h1>
@@ -263,7 +271,11 @@
               </svg>
             </div>
           </a>
-          <a href="https://pf.kakao.com/_CqKlX?from=qr" class="list-item" target="_blank">
+          <a
+            href="https://pf.kakao.com/_CqKlX?from=qr"
+            class="list-item"
+            target="_blank"
+          >
             <div class="item-icon kakao">
               <svg viewBox="0 0 24 24" fill="currentColor">
                 <path
@@ -332,28 +344,28 @@
         </div>
       </div>
 
-      <!-- 하단 버튼 -->
-      <button class="contact-button">
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <circle cx="18" cy="5" r="3" />
-          <circle cx="6" cy="12" r="3" />
-          <circle cx="18" cy="19" r="3" />
-          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
-          <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-        </svg>
-        프로필 공유하기
-      </button>
-
       <!-- 푸터 -->
       <footer class="footer">
         <p>&copy; 2025 GospelFix. All rights reserved.</p>
       </footer>
     </div>
+
+    <!-- 하단 플로팅 버튼 — container 바깥에 위치해야 position:fixed가 뷰포트 기준으로 동작 -->
+    <button class="contact-button">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <circle cx="18" cy="5" r="3" />
+        <circle cx="6" cy="12" r="3" />
+        <circle cx="18" cy="19" r="3" />
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+      </svg>
+      프로필 공유하기
+    </button>
 
     <script src="./assets/js/app.js"></script>
     <!-- Swiper JS -->

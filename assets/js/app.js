@@ -32,6 +32,8 @@ const App = (() => {
     createToast();
     bindEvents();
     initImageFallback();
+    positionFloatingBtn();
+    window.addEventListener('resize', positionFloatingBtn);
   };
 
   /**
@@ -67,6 +69,21 @@ const App = (() => {
     }
 
     elements.toast = toast;
+  };
+
+  /**
+   * 플로팅 버튼 위치를 컨테이너에 맞게 정렬
+   * — position:fixed는 뷰포트 기준이므로 CSS left:50%가 컨테이너와 어긋날 수 있음
+   */
+  const positionFloatingBtn = () => {
+    const container = document.querySelector('.container');
+    if (!container || !elements.shareBtn) return;
+
+    const { left, width } = container.getBoundingClientRect();
+    const btnWidth = width - 48; // 양쪽 24px 패딩
+    elements.shareBtn.style.left = `${left + 24}px`;
+    elements.shareBtn.style.width = `${btnWidth}px`;
+    elements.shareBtn.style.transform = 'none';
   };
 
   /**
