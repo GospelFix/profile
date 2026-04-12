@@ -1,33 +1,149 @@
-
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  .container { padding: 1rem 0; font-family: var(--font-sans); }
-  .stat-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1rem; }
-  .pill { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 6px 14px; font-size: 13px; color: var(--color-text-secondary); }
-  .pill strong { color: var(--color-text-primary); font-weight: 500; }
-  .legend { display: flex; gap: 14px; font-size: 12px; color: var(--color-text-secondary); margin-bottom: 8px; flex-wrap: wrap; }
-  .legend-item { display: flex; align-items: center; gap: 5px; }
-  .legend-sq { width: 10px; height: 10px; border-radius: 2px; }
-  .chart-wrap { position: relative; width: 100%; height: 360px; margin-bottom: 1.5rem; }
-  .events-section { border-top: 0.5px solid var(--color-border-tertiary); padding-top: 1rem; }
-  .events-title { font-size: 13px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 10px; }
-  .events-list { display: flex; flex-direction: column; gap: 5px; max-height: 280px; overflow-y: auto; margin-bottom: 12px; }
-  .event-item { display: flex; align-items: flex-start; gap: 10px; padding: 7px 10px; background: var(--color-background-secondary); border-radius: var(--border-radius-md); font-size: 13px; }
-  .event-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
-  .event-age { font-weight: 500; min-width: 52px; color: var(--color-text-primary); flex-shrink: 0; line-height: 1.4; }
-  .event-year { font-size: 11px; color: var(--color-text-tertiary); font-weight: 400; }
-  .event-label { flex: 1; color: var(--color-text-secondary); line-height: 1.5; }
-  .event-score { min-width: 30px; text-align: right; color: var(--color-text-tertiary); font-size: 12px; flex-shrink: 0; }
-  .event-del { cursor: pointer; color: var(--color-text-tertiary); font-size: 13px; padding: 0 4px; border: none; background: none; flex-shrink: 0; }
-  .add-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
-  .add-row input[type=number] { width: 70px; }
-  .add-row input[type=text] { flex: 1; min-width: 140px; }
-  .score-label { display: flex; align-items: center; gap: 4px; font-size: 12px; color: var(--color-text-secondary); flex-shrink: 0; }
-  .score-label input { width: 75px; }
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    padding: 1rem 0;
+    font-family: var(--font-sans);
+  }
+  .stat-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+  .pill {
+    background: var(--color-background-secondary);
+    border-radius: var(--border-radius-md);
+    padding: 6px 14px;
+    font-size: 13px;
+    color: var(--color-text-secondary);
+  }
+  .pill strong {
+    color: var(--color-text-primary);
+    font-weight: 500;
+  }
+  .legend {
+    display: flex;
+    gap: 14px;
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .legend-sq {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+  }
+  .chart-wrap {
+    position: relative;
+    width: 100%;
+    height: 360px;
+    margin-bottom: 1.5rem;
+  }
+  .events-section {
+    border-top: 0.5px solid var(--color-border-tertiary);
+    padding-top: 1rem;
+  }
+  .events-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    margin-bottom: 10px;
+  }
+  .events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    max-height: 280px;
+    overflow-y: auto;
+    margin-bottom: 12px;
+  }
+  .event-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 7px 10px;
+    background: var(--color-background-secondary);
+    border-radius: var(--border-radius-md);
+    font-size: 13px;
+  }
+  .event-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .event-age {
+    font-weight: 500;
+    min-width: 52px;
+    color: var(--color-text-primary);
+    flex-shrink: 0;
+    line-height: 1.4;
+  }
+  .event-year {
+    font-size: 11px;
+    color: var(--color-text-tertiary);
+    font-weight: 400;
+  }
+  .event-label {
+    flex: 1;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+  .event-score {
+    min-width: 30px;
+    text-align: right;
+    color: var(--color-text-tertiary);
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+  .event-del {
+    cursor: pointer;
+    color: var(--color-text-tertiary);
+    font-size: 13px;
+    padding: 0 4px;
+    border: none;
+    background: none;
+    flex-shrink: 0;
+  }
+  .add-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .add-row input[type="number"] {
+    width: 70px;
+  }
+  .add-row input[type="text"] {
+    flex: 1;
+    min-width: 140px;
+  }
+  .score-label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    flex-shrink: 0;
+  }
+  .score-label input {
+    width: 75px;
+  }
 </style>
 
 <div class="container">
-  <h2 class="sr-only">가스펙픽스님의 인생 그래프 — 1988년생</h2>
+  <h2 class="sr-only">인생 그래프 — 1988년생</h2>
 
   <div class="stat-pills">
     <div class="pill">출생 <strong>1988</strong></div>
@@ -37,16 +153,39 @@
   </div>
 
   <div class="legend">
-    <div class="legend-item"><div class="legend-sq" style="background:#534AB7;"></div>지나온 시간</div>
-    <div class="legend-item"><div class="legend-sq" style="background:#D3D1C7;"></div>앞으로</div>
-    <div class="legend-item"><div class="legend-sq" style="background:#D85A30;"></div>힘든 시기</div>
-    <div class="legend-item"><div class="legend-sq" style="background:#185FA5;"></div>신앙·공동체</div>
-    <div class="legend-item"><div class="legend-sq" style="background:#0F6E56;"></div>성장·전환</div>
-    <div class="legend-item"><div class="legend-sq" style="background:#BA7517;"></div>터닝포인트</div>
+    <div class="legend-item">
+      <div class="legend-sq" style="background: #534ab7"></div>
+      지나온 시간
+    </div>
+    <div class="legend-item">
+      <div class="legend-sq" style="background: #d3d1c7"></div>
+      앞으로
+    </div>
+    <div class="legend-item">
+      <div class="legend-sq" style="background: #d85a30"></div>
+      힘든 시기
+    </div>
+    <div class="legend-item">
+      <div class="legend-sq" style="background: #185fa5"></div>
+      신앙·공동체
+    </div>
+    <div class="legend-item">
+      <div class="legend-sq" style="background: #0f6e56"></div>
+      성장·전환
+    </div>
+    <div class="legend-item">
+      <div class="legend-sq" style="background: #ba7517"></div>
+      터닝포인트
+    </div>
   </div>
 
   <div class="chart-wrap">
-    <canvas id="lifeChart" role="img" aria-label="가스펙픽스님 인생 그래프 0세~80세">인생 그래프</canvas>
+    <canvas
+      id="lifeChart"
+      role="img"
+      aria-label="가스펙픽스님 인생 그래프 0세~80세"
+      >인생 그래프</canvas
+    >
   </div>
 
   <div class="events-section">
@@ -55,8 +194,16 @@
     <div class="add-row">
       <input type="number" id="inp-age" min="0" max="80" placeholder="나이" />
       <input type="text" id="inp-label" placeholder="어떤 일이 있었나요?" />
-      <div class="score-label">에너지
-        <input type="range" id="inp-score" min="1" max="10" value="7" step="1" />
+      <div class="score-label">
+        에너지
+        <input
+          type="range"
+          id="inp-score"
+          min="1"
+          max="10"
+          value="7"
+          step="1"
+        />
         <span id="score-out">7</span>
       </div>
       <select id="inp-cat">
@@ -73,232 +220,354 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
-const BIRTH = 1988;
-const NOW_AGE = 38;
-const LIFE = 80;
+  const BIRTH = 1988;
+  const NOW_AGE = 38;
+  const LIFE = 80;
 
-const CAT_COLOR = {
-  hard:    '#D85A30',
-  growth:  '#0F6E56',
-  faith:   '#185FA5',
-  turning: '#BA7517',
-  now:     '#534AB7'
-};
+  const CAT_COLOR = {
+    hard: "#D85A30",
+    growth: "#0F6E56",
+    faith: "#185FA5",
+    turning: "#BA7517",
+    now: "#534AB7",
+  };
 
-document.getElementById('inp-score').addEventListener('input', function() {
-  document.getElementById('score-out').textContent = this.value;
-});
-
-let events = [
-  { age: 0,  label: '모태신앙으로 출생. 부모님 압구정 옷 수선집 번창기.', score: 5, cat: 'faith' },
-  { age: 1,  label: 'IMF 직격. 집안 사업 붕괴.', score: 2, cat: 'hard' },
-  { age: 2,  label: '친척집·교회 집사님 가정에서 자람. 부모님과 떨어진 유년기.', score: 3, cat: 'hard' },
-  { age: 8,  label: '목양교회 등록. 부모님과 신앙생활 시작. 송창하와 첫 만남 — 축구, 농구, 성경학교.', score: 7, cat: 'faith' },
-  { age: 12, label: '송창하, 미국으로 이민. 첫 이별의 경험.', score: 4, cat: 'faith' },
-  { age: 17, label: '고등학교. 목양교회가 10대의 중심.', score: 6, cat: 'faith' },
-  { age: 20, label: '성인 / 청년부. 동대문 패션 업계 일 시작.', score: 7, cat: 'growth' },
-  { age: 27, label: '프론트엔드 개발자 커리어 시작. 동대문 5년차.', score: 8, cat: 'growth' },
-  { age: 28, label: '목사파 vs 장로파 분열로 목양교회 붕괴. "내 믿음도 저들처럼 될 것 같아" — 도망치듯 떠남.', score: 3, cat: 'hard' },
-  { age: 29, label: '신앙 방황기. 대학 후배의 다단계에 빠져 제2금융권 800만원 빚 발생. 동대문 커리어 포기.', score: 1, cat: 'hard' },
-  { age: 30, label: '삼성 LED 공장 (지방). 주·야간 교대근무로 빚 상환 시작. 술·담배. 구토 중 "내가 여기서 뭐하고 있지?"', score: 2, cat: 'hard' },
-  { age: 30, label: '선언기도 — "살려만 주시면 주님이 주신 달란트를 주님 영광 돌리는 곳에 쓰겠다." 보름 후 후배 문자로 1금융 대환 방법 전달받음.', score: 6, cat: 'turning' },
-  { age: 31, label: '4대보험 취업, 재직증명서로 1금융 대환. 빚 정리 완료. 새 출발.', score: 7, cat: 'growth' },
-  { age: 35, label: 'GospelFix 창업. AI Agent 솔루션 사업 시작.', score: 9, cat: 'growth' },
-  { age: 38, label: '현재 — AI Agent 사업 성장 중. BNI, 정책자금 도전.', score: 9, cat: 'now' },
-];
-
-function buildCurve() {
-  const pts = [];
-  for (let age = 0; age <= LIFE; age++) {
-    let y;
-    if (age <= 1)        y = 5;
-    else if (age <= 5)   y = 2.5 + (age - 1) * 0.6;
-    else if (age < 8)    y = 5 + (age - 5) * 0.3;
-    else if (age < 28)   y = 6.5 + (age - 8) * 0.05;
-    else if (age < 29)   y = 7.5 - (age - 28) * 4.5;
-    else if (age < 30)   y = 3 - (age - 29) * 2;
-    else if (age === 30) y = 1;
-    else if (age < 32)   y = 1 + (age - 30) * 3;
-    else if (age < 40)   y = 7 + (age - 32) * 0.2;
-    else if (age < 55)   y = 8.6 - (age - 40) * 0.04;
-    else if (age < 70)   y = 8 - (age - 55) * 0.06;
-    else                 y = 7.1 - (age - 70) * 0.05;
-    pts.push({ x: age, y: Math.round(Math.min(10, Math.max(0.5, y)) * 10) / 10 });
-  }
-  return pts;
-}
-
-const curve  = buildCurve();
-const past   = curve.filter(p => p.x <= NOW_AGE);
-const future = curve.filter(p => p.x >= NOW_AGE);
-let chart;
-
-function scatterData() {
-  return events.map((e, i) => ({ x: e.age, y: e.score, label: e.label, cat: e.cat, idx: i }));
-}
-
-const bandPlugin = {
-  id: 'bands',
-  beforeDraw(chart) {
-    const { ctx, scales: { x, y } } = chart;
-    const top = y.getPixelForValue(11);
-    const bot = y.getPixelForValue(0);
-    ctx.save();
-
-    // 목양교회 밴드
-    ctx.fillStyle = 'rgba(24,95,165,0.06)';
-    ctx.fillRect(x.getPixelForValue(8), top, x.getPixelForValue(28) - x.getPixelForValue(8), bot - top);
-    ctx.fillStyle = 'rgba(24,95,165,0.4)';
-    ctx.font = '11px sans-serif';
-    ctx.fillText('목양교회 (8~28세)', x.getPixelForValue(8) + 5, top + 16);
-
-    // 방황·바닥 밴드
-    ctx.fillStyle = 'rgba(216,90,48,0.07)';
-    ctx.fillRect(x.getPixelForValue(28), top, x.getPixelForValue(31) - x.getPixelForValue(28), bot - top);
-    ctx.fillStyle = 'rgba(216,90,48,0.45)';
-    ctx.font = '11px sans-serif';
-    ctx.fillText('방황·바닥', x.getPixelForValue(28) + 4, top + 16);
-
-    // 선언기도 수직선
-    const px = x.getPixelForValue(30.3);
-    ctx.strokeStyle = 'rgba(186,117,23,0.6)';
-    ctx.lineWidth = 1.5;
-    ctx.setLineDash([4, 3]);
-    ctx.beginPath();
-    ctx.moveTo(px, top);
-    ctx.lineTo(px, bot);
-    ctx.stroke();
-    ctx.fillStyle = 'rgba(186,117,23,0.8)';
-    ctx.font = '500 11px sans-serif';
-    ctx.fillText('선언기도', px + 4, top + 32);
-    ctx.setLineDash([]);
-
-    ctx.restore();
-  }
-};
-
-function initChart() {
-  const ctx = document.getElementById('lifeChart').getContext('2d');
-  chart = new Chart(ctx, {
-    type: 'scatter',
-    plugins: [bandPlugin],
-    data: {
-      datasets: [
-        {
-          label: '지나온 시간',
-          data: past,
-          type: 'line',
-          borderColor: '#534AB7',
-          backgroundColor: 'rgba(83,74,183,0.07)',
-          fill: true,
-          tension: 0.4,
-          pointRadius: 0,
-          borderWidth: 2,
-          order: 3
-        },
-        {
-          label: '앞으로의 시간',
-          data: future,
-          type: 'line',
-          borderColor: '#B4B2A9',
-          backgroundColor: 'rgba(180,178,169,0.04)',
-          fill: true,
-          tension: 0.4,
-          pointRadius: 0,
-          borderWidth: 1.5,
-          borderDash: [5, 4],
-          order: 4
-        },
-        {
-          label: '이벤트',
-          data: scatterData(),
-          type: 'scatter',
-          pointBackgroundColor: (ctx) => CAT_COLOR[ctx.raw?.cat] || '#0F6E56',
-          pointBorderColor: '#fff',
-          pointBorderWidth: 2,
-          pointRadius: 7,
-          order: 1
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          callbacks: {
-            label: (ctx) => {
-              const d = ctx.raw;
-              if (d && d.label) return [`${d.x}세 (${BIRTH + d.x}년)`, d.label, `에너지 ${d.y}/10`];
-              return `에너지 ${d.y}`;
-            }
-          },
-          bodyFont: { size: 12 },
-          padding: 10,
-          boxPadding: 4
-        }
-      },
-      scales: {
-        x: {
-          type: 'linear', min: 0, max: LIFE,
-          title: { display: true, text: '나이', color: '#888780', font: { size: 12 } },
-          ticks: { stepSize: 10, callback: v => v + '세', color: '#888780', font: { size: 11 } },
-          grid: { color: 'rgba(136,135,128,0.1)' }
-        },
-        y: {
-          min: 0, max: 11,
-          title: { display: true, text: '삶의 에너지', color: '#888780', font: { size: 12 } },
-          ticks: { stepSize: 2, color: '#888780', font: { size: 11 } },
-          grid: { color: 'rgba(136,135,128,0.1)' }
-        }
-      }
-    }
+  document.getElementById("inp-score").addEventListener("input", function () {
+    document.getElementById("score-out").textContent = this.value;
   });
-}
 
-function renderList() {
-  const list = document.getElementById('events-list');
-  list.innerHTML = '';
-  [...events].sort((a, b) => a.age - b.age).forEach((e) => {
-    const realIdx = events.indexOf(e);
-    const div = document.createElement('div');
-    div.className = 'event-item';
-    div.innerHTML = `
+  let events = [
+    {
+      age: 0,
+      label: "모태신앙으로 출생. 부모님 압구정 옷 수선집 번창기.",
+      score: 5,
+      cat: "faith",
+    },
+    { age: 1, label: "IMF 직격. 집안 사업 붕괴.", score: 2, cat: "hard" },
+    {
+      age: 2,
+      label: "친척집·교회 집사님 가정에서 자람. 부모님과 떨어진 유년기.",
+      score: 3,
+      cat: "hard",
+    },
+    {
+      age: 8,
+      label:
+        "목양교회 등록. 부모님과 신앙생활 시작. 송창하와 첫 만남 — 축구, 농구, 성경학교.",
+      score: 7,
+      cat: "faith",
+    },
+    {
+      age: 12,
+      label: "송창하, 미국으로 이민. 첫 이별의 경험.",
+      score: 4,
+      cat: "faith",
+    },
+    {
+      age: 17,
+      label: "고등학교. 목양교회가 10대의 중심.",
+      score: 6,
+      cat: "faith",
+    },
+    {
+      age: 20,
+      label: "성인 / 청년부. 동대문 패션 업계 일 시작.",
+      score: 7,
+      cat: "growth",
+    },
+    {
+      age: 27,
+      label: "프론트엔드 개발자 커리어 시작. 동대문 5년차.",
+      score: 8,
+      cat: "growth",
+    },
+    {
+      age: 28,
+      label:
+        '목사파 vs 장로파 분열로 목양교회 붕괴. "내 믿음도 저들처럼 될 것 같아" — 도망치듯 떠남.',
+      score: 3,
+      cat: "hard",
+    },
+    {
+      age: 29,
+      label:
+        "신앙 방황기. 대학 후배의 다단계에 빠져 제2금융권 800만원 빚 발생. 동대문 커리어 포기.",
+      score: 1,
+      cat: "hard",
+    },
+    {
+      age: 30,
+      label:
+        '삼성 LED 공장 (지방). 주·야간 교대근무로 빚 상환 시작. 술·담배. 구토 중 "내가 여기서 뭐하고 있지?"',
+      score: 2,
+      cat: "hard",
+    },
+    {
+      age: 30,
+      label:
+        '선언기도 — "살려만 주시면 주님이 주신 달란트를 주님 영광 돌리는 곳에 쓰겠다." 보름 후 후배 문자로 1금융 대환 방법 전달받음.',
+      score: 6,
+      cat: "turning",
+    },
+    {
+      age: 31,
+      label: "4대보험 취업, 재직증명서로 1금융 대환. 빚 정리 완료. 새 출발.",
+      score: 7,
+      cat: "growth",
+    },
+    {
+      age: 35,
+      label: "GospelFix 창업. AI Agent 솔루션 사업 시작.",
+      score: 9,
+      cat: "growth",
+    },
+    {
+      age: 38,
+      label: "현재 — AI Agent 사업 성장 중. BNI, 정책자금 도전.",
+      score: 9,
+      cat: "now",
+    },
+  ];
+
+  function buildCurve() {
+    const pts = [];
+    for (let age = 0; age <= LIFE; age++) {
+      let y;
+      if (age <= 1) y = 5;
+      else if (age <= 5) y = 2.5 + (age - 1) * 0.6;
+      else if (age < 8) y = 5 + (age - 5) * 0.3;
+      else if (age < 28) y = 6.5 + (age - 8) * 0.05;
+      else if (age < 29) y = 7.5 - (age - 28) * 4.5;
+      else if (age < 30) y = 3 - (age - 29) * 2;
+      else if (age === 30) y = 1;
+      else if (age < 32) y = 1 + (age - 30) * 3;
+      else if (age < 40) y = 7 + (age - 32) * 0.2;
+      else if (age < 55) y = 8.6 - (age - 40) * 0.04;
+      else if (age < 70) y = 8 - (age - 55) * 0.06;
+      else y = 7.1 - (age - 70) * 0.05;
+      pts.push({
+        x: age,
+        y: Math.round(Math.min(10, Math.max(0.5, y)) * 10) / 10,
+      });
+    }
+    return pts;
+  }
+
+  const curve = buildCurve();
+  const past = curve.filter((p) => p.x <= NOW_AGE);
+  const future = curve.filter((p) => p.x >= NOW_AGE);
+  let chart;
+
+  function scatterData() {
+    return events.map((e, i) => ({
+      x: e.age,
+      y: e.score,
+      label: e.label,
+      cat: e.cat,
+      idx: i,
+    }));
+  }
+
+  const bandPlugin = {
+    id: "bands",
+    beforeDraw(chart) {
+      const {
+        ctx,
+        scales: { x, y },
+      } = chart;
+      const top = y.getPixelForValue(11);
+      const bot = y.getPixelForValue(0);
+      ctx.save();
+
+      // 목양교회 밴드
+      ctx.fillStyle = "rgba(24,95,165,0.06)";
+      ctx.fillRect(
+        x.getPixelForValue(8),
+        top,
+        x.getPixelForValue(28) - x.getPixelForValue(8),
+        bot - top,
+      );
+      ctx.fillStyle = "rgba(24,95,165,0.4)";
+      ctx.font = "11px sans-serif";
+      ctx.fillText("목양교회 (8~28세)", x.getPixelForValue(8) + 5, top + 16);
+
+      // 방황·바닥 밴드
+      ctx.fillStyle = "rgba(216,90,48,0.07)";
+      ctx.fillRect(
+        x.getPixelForValue(28),
+        top,
+        x.getPixelForValue(31) - x.getPixelForValue(28),
+        bot - top,
+      );
+      ctx.fillStyle = "rgba(216,90,48,0.45)";
+      ctx.font = "11px sans-serif";
+      ctx.fillText("방황·바닥", x.getPixelForValue(28) + 4, top + 16);
+
+      // 선언기도 수직선
+      const px = x.getPixelForValue(30.3);
+      ctx.strokeStyle = "rgba(186,117,23,0.6)";
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([4, 3]);
+      ctx.beginPath();
+      ctx.moveTo(px, top);
+      ctx.lineTo(px, bot);
+      ctx.stroke();
+      ctx.fillStyle = "rgba(186,117,23,0.8)";
+      ctx.font = "500 11px sans-serif";
+      ctx.fillText("선언기도", px + 4, top + 32);
+      ctx.setLineDash([]);
+
+      ctx.restore();
+    },
+  };
+
+  function initChart() {
+    const ctx = document.getElementById("lifeChart").getContext("2d");
+    chart = new Chart(ctx, {
+      type: "scatter",
+      plugins: [bandPlugin],
+      data: {
+        datasets: [
+          {
+            label: "지나온 시간",
+            data: past,
+            type: "line",
+            borderColor: "#534AB7",
+            backgroundColor: "rgba(83,74,183,0.07)",
+            fill: true,
+            tension: 0.4,
+            pointRadius: 0,
+            borderWidth: 2,
+            order: 3,
+          },
+          {
+            label: "앞으로의 시간",
+            data: future,
+            type: "line",
+            borderColor: "#B4B2A9",
+            backgroundColor: "rgba(180,178,169,0.04)",
+            fill: true,
+            tension: 0.4,
+            pointRadius: 0,
+            borderWidth: 1.5,
+            borderDash: [5, 4],
+            order: 4,
+          },
+          {
+            label: "이벤트",
+            data: scatterData(),
+            type: "scatter",
+            pointBackgroundColor: (ctx) => CAT_COLOR[ctx.raw?.cat] || "#0F6E56",
+            pointBorderColor: "#fff",
+            pointBorderWidth: 2,
+            pointRadius: 7,
+            order: 1,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: (ctx) => {
+                const d = ctx.raw;
+                if (d && d.label)
+                  return [
+                    `${d.x}세 (${BIRTH + d.x}년)`,
+                    d.label,
+                    `에너지 ${d.y}/10`,
+                  ];
+                return `에너지 ${d.y}`;
+              },
+            },
+            bodyFont: { size: 12 },
+            padding: 10,
+            boxPadding: 4,
+          },
+        },
+        scales: {
+          x: {
+            type: "linear",
+            min: 0,
+            max: LIFE,
+            title: {
+              display: true,
+              text: "나이",
+              color: "#888780",
+              font: { size: 12 },
+            },
+            ticks: {
+              stepSize: 10,
+              callback: (v) => v + "세",
+              color: "#888780",
+              font: { size: 11 },
+            },
+            grid: { color: "rgba(136,135,128,0.1)" },
+          },
+          y: {
+            min: 0,
+            max: 11,
+            title: {
+              display: true,
+              text: "삶의 에너지",
+              color: "#888780",
+              font: { size: 12 },
+            },
+            ticks: { stepSize: 2, color: "#888780", font: { size: 11 } },
+            grid: { color: "rgba(136,135,128,0.1)" },
+          },
+        },
+      },
+    });
+  }
+
+  function renderList() {
+    const list = document.getElementById("events-list");
+    list.innerHTML = "";
+    [...events]
+      .sort((a, b) => a.age - b.age)
+      .forEach((e) => {
+        const realIdx = events.indexOf(e);
+        const div = document.createElement("div");
+        div.className = "event-item";
+        div.innerHTML = `
       <div class="event-dot" style="background:${CAT_COLOR[e.cat]};"></div>
       <div class="event-age">${e.age}세<br><span class="event-year">${BIRTH + e.age}년</span></div>
       <div class="event-label">${e.label}</div>
       <div class="event-score">${e.score}/10</div>
       <button class="event-del" onclick="removeEvent(${realIdx})">✕</button>
     `;
-    list.appendChild(div);
-  });
-}
+        list.appendChild(div);
+      });
+  }
 
-function updateChart() {
-  chart.data.datasets[2].data = scatterData();
-  chart.update();
-}
+  function updateChart() {
+    chart.data.datasets[2].data = scatterData();
+    chart.update();
+  }
 
-function addEvent() {
-  const age   = parseInt(document.getElementById('inp-age').value);
-  const label = document.getElementById('inp-label').value.trim();
-  const score = parseInt(document.getElementById('inp-score').value);
-  const cat   = document.getElementById('inp-cat').value;
-  if (isNaN(age) || age < 0 || age > 80 || !label) return;
-  events.push({ age, label, score, cat });
-  document.getElementById('inp-age').value  = '';
-  document.getElementById('inp-label').value = '';
+  function addEvent() {
+    const age = parseInt(document.getElementById("inp-age").value);
+    const label = document.getElementById("inp-label").value.trim();
+    const score = parseInt(document.getElementById("inp-score").value);
+    const cat = document.getElementById("inp-cat").value;
+    if (isNaN(age) || age < 0 || age > 80 || !label) return;
+    events.push({ age, label, score, cat });
+    document.getElementById("inp-age").value = "";
+    document.getElementById("inp-label").value = "";
+    renderList();
+    updateChart();
+  }
+
+  function removeEvent(i) {
+    events.splice(i, 1);
+    renderList();
+    updateChart();
+  }
+
+  initChart();
   renderList();
-  updateChart();
-}
-
-function removeEvent(i) {
-  events.splice(i, 1);
-  renderList();
-  updateChart();
-}
-
-initChart();
-renderList();
 </script>
