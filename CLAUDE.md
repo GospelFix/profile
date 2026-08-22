@@ -52,8 +52,9 @@ assets/data/*.json  →  CardsModule.loadCards()  →  Swiper 슬라이드 DOM �
 ### 외부 의존성 (CDN)
 
 - **Swiper v11** — 카드 슬라이더 (`swiper-bundle.min.css` / `swiper-bundle.min.js`)
-- **Google Fonts** — Inter 폰트
 - **Google Analytics** — `G-B8HHTC2RFX`
+
+폰트는 CDN이 아니라 `assets/fonts/Pretendard-*.woff2`를 `@font-face`로 로컬 번들 (Google Fonts Inter 링크는 제거됨, Inter는 폴백으로만 스택에 남음).
 
 ### 예외: `pages/life.html`
 
@@ -66,11 +67,15 @@ assets/data/*.json  →  CardsModule.loadCards()  →  Swiper 슬라이드 DOM �
 - JS 모듈 패턴: IIFE (`const Module = (() => { ... })();`) — 전역 변수 금지, 퍼블릭 API만 노출
 - 사용자 입력을 innerHTML에 삽입할 때 반드시 `escapeHtml()` 통과
 - CSS: 모바일 우선, `clamp()`로 폰트 크기, 터치 영역 최소 44px, CSS 변수로 색상/크기 관리
-- 색상/타이포/스페이싱 CSS 변수의 정의와 용도는 `config/design-system.md` 참조 (다크 테마 고정, `--color-bg: #000000`)
+- 색상/타이포/스페이싱 CSS 변수의 정의와 용도는 `config/design-system.md` 참조 (라이트 테마 고정, `--color-bg: #f4f5f7`)
 - 이미지는 `assets/images/` 하위에 위치
 
 ---
 
 ## 커밋 컨벤션
 
-`<영문 접두사>: <한글 설명>` 형식 (예: `Feat: 카카오 채널 클릭 시 앱 딥링크 연결`, `Fix: 카드 썸네일 이미지 경로 수정`). 주로 쓰이는 접두사: `Feat`, `Fix`, `Refactor`, `Style`, `Docs`, `File`(에셋 추가/교체), `Update`.
+`<이모지> <영문 접두사>: <한글 설명>` 형식 (예: `✨ Feat: 카카오 채널 클릭 시 앱 딥링크 연결`, `🐛 Fix: 카드 썸네일 이미지 경로 수정`). 접두사별 이모지: `Feat`→✨, `Fix`→🐛, `Refactor`→♻️, `Style`→💄, `Docs`→📝, `File`(에셋 추가/교체)→🗂️, `Update`→🔧.
+
+변경 사항을 전부 한 커밋에 몰아넣지 않고, 의미 단위(같은 기능/버그 수정/콘텐츠 갱신)로 나눠서 커밋한다.
+
+**커밋/push 전 필수 절차**: 반드시 `senior-code-reviewer` 서브에이전트로 코드 리뷰를 먼저 진행한 뒤에만 커밋/push를 진행한다. 리뷰에서 지적된 문제는 수정 후 다시 검토를 거쳐야 하며, 리뷰를 생략하고 바로 커밋/push하지 않는다.

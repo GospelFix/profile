@@ -1,6 +1,6 @@
 # 디자인 시스템
 
-> 개발자 웹 이력서 프로젝트의 통합 디자인 가이드 (Dark Theme)
+> 개발자 웹 이력서 프로젝트의 통합 디자인 가이드 (Light Theme)
 
 ---
 
@@ -18,9 +18,9 @@
 ## 개요
 
 이 문서는 프로젝트의 디자인 시스템을 정의합니다.
-**다크 테마** 기반으로 색상, 타이포그래피, 스페이싱, 컴포넌트 스타일을 포함합니다.
+**라이트 테마** 기반으로 색상, 타이포그래피, 스페이싱, 컴포넌트 스타일을 포함합니다.
 
-참고 사이트: [Linkpie](https://lnkpie.com/)
+프로필 히어로(사진 + 오버랩 카드), 아이콘 없는 플랫 리스트(연락처/소셜) 레이아웃은 참고 레퍼런스 이미지를 기준으로 함.
 
 ---
 
@@ -38,8 +38,8 @@
 
 - **모바일 우선**: 기본 최대 너비 390px
 - **태블릿**: 768px 이상에서 카드형 레이아웃
-- **데스크톱**: 1200px 이상에서 확대된 레이아웃
-- **배경**: 순수 검정 (#000)
+- **데스크톱**: 1200px 이상에서 확대된 레이아웃, 좌측 여백에 블러 처리된 파란색 원형 장식 효과(`body::before`, `float` 애니메이션)
+- **배경**: 라이트 그레이 (`#f4f5f7`)
 
 ---
 
@@ -47,7 +47,7 @@
 
 - 인라인 SVG 사용
 - 외부 아이콘 라이브러리 없음
-- 아이콘 색상: 투명도 있는 흰색 또는 액센트 컬러
+- 연락처/소셜 리스트는 아이콘 없이 라벨+값+화살표만 있는 플랫 리스트로 구성 (구 버전의 컬러 아이콘 박스 패턴 폐기)
 
 ---
 
@@ -62,7 +62,7 @@
 
 - DOM에 동적 생성
 - 자동 사라짐 (3초)
-- 다크 테마: 흰색 배경 + 검정 텍스트
+- 라이트 테마: 어두운(`--color-text`) 배경 + 흰색 텍스트로 배경과 대비 확보
 
 ### 이미지 폴백
 
@@ -76,24 +76,22 @@
 
 ## 디자인 토큰
 
-> 다크 테마 색상, 타이포그래피, 스페이싱 정의
+> 라이트 테마 색상, 타이포그래피, 스페이싱 정의
 
 ### 색상
 
 | 용도          | 변수명                   | 색상코드                    |
 | ------------- | ------------------------ | --------------------------- |
-| 배경          | `--color-bg`             | `#000000`                   |
-| 카드 배경     | `--color-card`           | `rgba(255, 255, 255, 0.05)` |
-| 카드 테두리   | `--color-border`         | `rgba(255, 255, 255, 0.08)` |
-| 텍스트        | `--color-text`           | `#ffffff`                   |
-| 보조 텍스트   | `--color-text-secondary` | `rgba(255, 255, 255, 0.5)`  |
-| 비활성 텍스트 | `--color-text-muted`     | `rgba(255, 255, 255, 0.3)`  |
-| 액센트 (보라) | `--color-accent`         | `#a78bfa`                   |
-| 액센트 (파랑) | `--color-accent-blue`    | `#60a5fa`                   |
-| 액센트 (초록) | `--color-accent-green`   | `#4ade80`                   |
-| 액센트 (핑크) | `--color-accent-pink`    | `#f472b6`                   |
-| 액센트 (주황) | `--color-accent-orange`  | `#fb923c`                   |
-| 액센트 (노랑) | `--color-accent-yellow`  | `#fbbf24`                   |
+| 배경          | `--color-bg`             | `#f4f5f7`                   |
+| 카드/표면 배경 | `--color-surface`       | `#ffffff`                   |
+| 칩/태그 배경   | `--color-chip-bg`       | `#eef0f3`                   |
+| 테두리        | `--color-border`         | `rgba(20, 21, 26, 0.08)`    |
+| 테두리 (강조) | `--color-border-strong`  | `rgba(20, 21, 26, 0.14)`    |
+| 텍스트        | `--color-text`           | `#14151a`                   |
+| 보조 텍스트   | `--color-text-secondary` | `rgba(20, 21, 26, 0.55)`    |
+| 비활성 텍스트 | `--color-text-muted`     | `rgba(20, 21, 26, 0.35)`    |
+
+액센트 컬러 팔레트는 사용하지 않음 — 컬러 아이콘 박스를 제거하고 흑백 위주의 편집 디자인으로 전환했기 때문. 유일한 색 포인트는 데스크톱(1200px+) 배경에 표시되는 파란색 블러 장식 효과(`body::before`, `float` 애니메이션)뿐.
 
 ### 타이포그래피
 
@@ -101,6 +99,7 @@
 
 ```css
 font-family:
+  "Pretendard",
   "Inter",
   -apple-system,
   BlinkMacSystemFont,
@@ -108,8 +107,8 @@ font-family:
   sans-serif;
 ```
 
-- Google Fonts Inter 사용
-- 시스템 폰트 폴백
+- `assets/fonts/Pretendard-*.woff2`를 `@font-face`로 로컬 번들 (400/500/600/700/800 웨이트). 한글 최적화 + 외부 네트워크 요청 없음.
+- Inter/시스템 폰트는 폴백으로만 유지.
 
 #### 폰트 크기
 
@@ -173,22 +172,15 @@ padding: var(--space-6); /* 24px */
 
 ```css
 :root {
-  /* 색상 - 다크 테마 */
-  --color-bg: #000000;
-  --color-card: rgba(255, 255, 255, 0.05);
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-border-hover: rgba(255, 255, 255, 0.15);
-  --color-text: #ffffff;
-  --color-text-secondary: rgba(255, 255, 255, 0.5);
-  --color-text-muted: rgba(255, 255, 255, 0.3);
-
-  /* 액센트 컬러 */
-  --color-accent: #a78bfa;
-  --color-accent-blue: #60a5fa;
-  --color-accent-green: #4ade80;
-  --color-accent-pink: #f472b6;
-  --color-accent-orange: #fb923c;
-  --color-accent-yellow: #fbbf24;
+  /* 색상 - 라이트 테마 */
+  --color-bg: #f4f5f7;
+  --color-surface: #ffffff;
+  --color-chip-bg: #eef0f3;
+  --color-border: rgba(20, 21, 26, 0.08);
+  --color-border-strong: rgba(20, 21, 26, 0.14);
+  --color-text: #14151a;
+  --color-text-secondary: rgba(20, 21, 26, 0.55);
+  --color-text-muted: rgba(20, 21, 26, 0.35);
 
   /* 타이포그래피 */
   --text-xs: 10px;
@@ -198,6 +190,7 @@ padding: var(--space-6); /* 24px */
   --text-lg: 16px;
   --text-xl: 20px;
   --text-2xl: 24px;
+  --text-3xl: 28px;
 
   --font-regular: 400;
   --font-medium: 500;
@@ -223,8 +216,8 @@ padding: var(--space-6); /* 24px */
   /* 반경 */
   --radius-sm: 6px;
   --radius-md: 10px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
   --radius-full: 50%;
 }
 ```
@@ -237,22 +230,18 @@ padding: var(--space-6); /* 24px */
 
 ### 버튼
 
-#### Primary 버튼 (흰색)
+#### Primary 버튼 (다크, 실제 예시: `.contact-button`)
 
 ```css
 .btn-primary {
-  background: #ffffff;
-  color: #000000;
+  background: var(--color-text);
+  color: var(--color-surface);
   padding: var(--space-4) var(--space-6); /* 16px 24px */
   border-radius: var(--radius-lg);
   font-weight: var(--font-semibold);
   font-size: var(--text-base);
   min-height: 44px;
   transition: all 0.2s ease;
-}
-
-.btn-primary:hover {
-  background: rgba(255, 255, 255, 0.9);
 }
 
 .btn-primary:active {
@@ -264,7 +253,7 @@ padding: var(--space-6); /* 24px */
 
 ```css
 .btn-secondary {
-  background: var(--color-card);
+  background: var(--color-chip-bg);
   color: var(--color-text);
   border: 1px solid var(--color-border);
   padding: var(--space-3) var(--space-5);
@@ -274,8 +263,7 @@ padding: var(--space-6); /* 24px */
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: var(--color-border-hover);
+  background: var(--color-border-strong);
 }
 ```
 
@@ -290,7 +278,7 @@ padding: var(--space-6); /* 24px */
 }
 
 .btn-ghost:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--color-chip-bg);
   color: var(--color-text);
 }
 ```
@@ -299,115 +287,52 @@ padding: var(--space-6); /* 24px */
 
 ```css
 .card {
-  background: var(--color-card);
-  border: 1px solid var(--color-border);
+  background: var(--color-surface);
   border-radius: var(--radius-lg);
-  padding: var(--space-4); /* 16px */
-}
-
-.card-hover {
-  transition: all 0.2s ease;
-}
-
-.card-hover:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: var(--color-border-hover);
-  transform: translateY(-2px);
+  overflow: hidden;
 }
 ```
 
 ### 리스트 아이템
 
+> 실제 구현(`assets/css/style.css`의 `.list-item`)은 아이콘 없이 라벨(왼쪽)+값(오른쪽, bold)+화살표로 구성되고, 카드 내부에서 divider(`border-bottom`)로 구분한다. 개별 항목마다 배경/테두리를 두르지 않는다.
+
 ```css
 .list-item {
   display: flex;
   align-items: center;
-  padding: 14px 24px;
-  margin: 0 16px 8px;
-  background: var(--color-card);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  transition: all 0.2s ease;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--color-border);
+  min-height: 44px;
 }
 
-.list-item:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: var(--color-border-hover);
+.list-item:last-child {
+  border-bottom: none;
 }
 
 .list-item:active {
-  transform: scale(0.98);
+  background: var(--color-chip-bg);
 }
 ```
 
-### 아이콘 박스
+### 아이콘 박스 (폐기됨)
 
-```css
-.icon-box {
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+과거 다크 테마에서는 연락처/소셜 항목마다 컬러 아이콘 박스(`.icon-box.email`, `.icon-box.kakao` 등)를 사용했으나, 라이트 테마 전환과 함께 제거되었다. 항목 구분은 라벨 텍스트만으로 한다.
 
-/* 이메일 */
-.icon-box.email {
-  background: rgba(59, 130, 246, 0.15);
-  color: var(--color-accent-blue);
-}
-
-/* 전화 */
-.icon-box.phone {
-  background: rgba(34, 197, 94, 0.15);
-  color: var(--color-accent-green);
-}
-
-/* 인스타그램 */
-.icon-box.instagram {
-  background: linear-gradient(
-    135deg,
-    rgba(236, 72, 153, 0.15) 0%,
-    rgba(239, 68, 68, 0.15) 100%
-  );
-  color: var(--color-accent-pink);
-}
-
-/* GitHub */
-.icon-box.github {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--color-text);
-}
-
-/* 블로그 */
-.icon-box.blog {
-  background: rgba(251, 146, 60, 0.15);
-  color: var(--color-accent-orange);
-}
-```
-
-### 배지
+### 배지 / 칩
 
 ```css
 .badge {
   display: inline-flex;
   align-items: center;
-  padding: 5px 10px;
+  padding: 4px 10px;
+  background: var(--color-chip-bg);
+  color: var(--color-text-secondary);
   border-radius: var(--radius-sm);
   font-size: var(--text-xs);
   font-weight: var(--font-semibold);
-}
-
-.badge-primary {
-  background: rgba(168, 85, 247, 0.2);
-  color: #c084fc;
-}
-
-.badge-outline {
-  background: transparent;
-  border: 1px solid rgba(168, 85, 247, 0.3);
-  color: var(--color-accent);
 }
 ```
 
@@ -415,7 +340,7 @@ padding: var(--space-6); /* 24px */
 
 ```css
 .link {
-  color: var(--color-accent);
+  color: var(--color-text);
   text-decoration: none;
   transition: opacity 0.2s ease;
 }
@@ -441,7 +366,7 @@ padding: var(--space-6); /* 24px */
 .input {
   width: 100%;
   padding: var(--space-3) var(--space-4);
-  background: var(--color-card);
+  background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   font-size: var(--text-base);
@@ -452,8 +377,8 @@ padding: var(--space-6); /* 24px */
 
 .input:focus {
   outline: none;
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.15);
+  border-color: var(--color-border-strong);
+  box-shadow: 0 0 0 3px rgba(20, 21, 26, 0.08);
 }
 
 .input::placeholder {
@@ -463,19 +388,21 @@ padding: var(--space-6); /* 24px */
 
 ### 토스트
 
+> 페이지 배경이 밝기 때문에 토스트는 반대로 어두운 배경 + 흰 텍스트로 대비를 확보한다 (실제 구현: `.toast`).
+
 ```css
 .toast {
   position: fixed;
   bottom: var(--space-6);
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(255, 255, 255, 0.95);
-  color: #000000;
+  background: var(--color-text);
+  color: var(--color-surface);
   padding: 14px 24px;
   border-radius: var(--radius-lg);
   font-size: var(--text-md);
   font-weight: var(--font-medium);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 12px rgba(20, 21, 26, 0.2);
   animation: toast-in 0.3s ease;
 }
 
@@ -491,20 +418,27 @@ padding: var(--space-6); /* 24px */
 }
 ```
 
-### 프로필 이미지
+### 프로필 히어로 이미지
+
+> 기존 원형 아바타(`.profile-image`) 대신, 사진이 상단 전체를 채우고 그 아래 카드가 겹쳐지는 히어로 레이아웃을 사용한다 (실제 구현: `.profile-hero-image` + `.profile-hero-card`).
 
 ```css
-.profile-image {
-  width: 100px;
-  height: 100px;
-  border-radius: var(--radius-full);
+.profile-hero-image {
+  width: 100%;
+  aspect-ratio: 1122 / 1402; /* 참조 인물 사진 원본 비율 */
   overflow: hidden;
-  border: 3px solid var(--color-border);
 }
 
-.profile-image img {
+.profile-hero-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top center;
+}
+
+.profile-hero-card {
+  margin-top: -28px; /* 사진 하단과 겹치는 오버랩 카드 */
+  background: var(--color-surface);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
 }
 ```
