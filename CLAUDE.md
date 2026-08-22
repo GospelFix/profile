@@ -25,6 +25,8 @@ npx serve .
 
 > `fetch()`로 JSON을 로드하므로 `file://` 프로토콜은 CORS 오류 발생. 반드시 로컬 서버로 확인.
 
+빌드/린트/테스트 도구 없음 (`package.json` 없음). 검증은 로컬 서버 구동 후 브라우저 확인이 유일한 방법.
+
 ---
 
 ## 아키텍처
@@ -53,6 +55,10 @@ assets/data/*.json  →  CardsModule.loadCards()  →  Swiper 슬라이드 DOM �
 - **Google Fonts** — Inter 폰트
 - **Google Analytics** — `G-B8HHTC2RFX`
 
+### 예외: `pages/life.html`
+
+독립된 인생 그래프 페이지로, `index.html`의 IIFE/모듈 규칙을 따르지 않는 별도 스크립트 조각(Chart.js CDN, 전역 함수 + `onclick` 핸들러)이다. `index.html`에서 링크로 연결되지 않는 별도 산출물이므로, 이 페이지를 수정할 때는 위 아키텍처 규칙을 강제하지 않아도 된다.
+
 ---
 
 ## 개발 규칙
@@ -60,4 +66,11 @@ assets/data/*.json  →  CardsModule.loadCards()  →  Swiper 슬라이드 DOM �
 - JS 모듈 패턴: IIFE (`const Module = (() => { ... })();`) — 전역 변수 금지, 퍼블릭 API만 노출
 - 사용자 입력을 innerHTML에 삽입할 때 반드시 `escapeHtml()` 통과
 - CSS: 모바일 우선, `clamp()`로 폰트 크기, 터치 영역 최소 44px, CSS 변수로 색상/크기 관리
+- 색상/타이포/스페이싱 CSS 변수의 정의와 용도는 `config/design-system.md` 참조 (다크 테마 고정, `--color-bg: #000000`)
 - 이미지는 `assets/images/` 하위에 위치
+
+---
+
+## 커밋 컨벤션
+
+`<영문 접두사>: <한글 설명>` 형식 (예: `Feat: 카카오 채널 클릭 시 앱 딥링크 연결`, `Fix: 카드 썸네일 이미지 경로 수정`). 주로 쓰이는 접두사: `Feat`, `Fix`, `Refactor`, `Style`, `Docs`, `File`(에셋 추가/교체), `Update`.
