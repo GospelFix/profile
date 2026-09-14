@@ -13,6 +13,7 @@ const App = (() => {
   // DOM Elements
   const elements = {
     shareBtn: null,
+    heroShareBtns: null,
     profileImg: null,
     toast: null
   };
@@ -41,6 +42,7 @@ const App = (() => {
    */
   const cacheDOM = () => {
     elements.shareBtn = document.querySelector('.contact-button');
+    elements.heroShareBtns = document.querySelectorAll('.hero-share-trigger');
     elements.profileImg = document.getElementById('profileImg');
   };
 
@@ -48,7 +50,7 @@ const App = (() => {
    * Initialize share data from DOM
    */
   const initShareData = () => {
-    const nameEl = document.querySelector('.profile-name');
+    const nameEl = document.querySelector('.profile-hero-name');
     if (nameEl) {
       shareData.title = nameEl.textContent;
     }
@@ -94,6 +96,11 @@ const App = (() => {
     if (elements.shareBtn) {
       elements.shareBtn.addEventListener('click', handleShare);
     }
+
+    // Hero share triggers (topbar icon + action row, mode="gradient")
+    elements.heroShareBtns.forEach((btn) => {
+      btn.addEventListener('click', handleShare);
+    });
   };
 
   /**

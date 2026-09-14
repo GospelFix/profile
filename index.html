@@ -104,39 +104,14 @@
   </head>
   <body>
     <div class="container">
-      <!-- 프로필 히어로 -->
-      <div class="profile-hero">
-        <div class="profile-hero-image">
-          <img
-            src="./assets/images/propil_v1.png"
-            alt="소윤호 프로필"
-            id="profileImg"
-          />
-        </div>
-        <div class="profile-hero-card">
-          <div class="profile-hero-top">
-            <h1 class="profile-hero-name">소윤호</h1>
-            <div class="profile-hero-badge">
-              <span class="badge-chip">GX</span>
-              <div class="profile-hero-badge-text">
-                <span class="profile-hero-company">GospelFix</span>
-                <span class="profile-hero-company-en"
-                  >AI AGENT AUTOMATION</span
-                >
-              </div>
-            </div>
-          </div>
-          <p class="profile-hero-role">
-            AI Agent 자동화 솔루션 전문가 | GospelFix 대표<br />
-            GospelFix (가스펄픽스)
-          </p>
-          <div class="profile-hero-tags">
-            <span class="hero-tag">AI 챗봇 예약 시스템</span>
-            <span class="hero-tag">카카오톡 자동응답봇</span>
-            <span class="hero-tag">1:1 문의</span>
-          </div>
-        </div>
-      </div>
+      <!--
+        프로필 히어로 (HeroModule 컴포넌트, mode prop으로 UI 전환)
+        사용하는 곳(여기): data-mode 값만 바꾸면 렌더링되는 UI가 전환됨
+        정의하는 곳: assets/js/hero.js의 TEMPLATES 객체
+          - "classic"  : 기존 디자인 (전체 프로필 사진 + 이름·배지 한 행)
+          - "gradient" : 그라데이션 배경 + 원형 아바타 + 액션 버튼 행 (기본값)
+      -->
+      <div class="profile-hero" id="profileHero" data-mode="gradient"></div>
 
       <!-- 연락처 섹션 -->
       <div class="section">
@@ -190,14 +165,14 @@
         <h2 class="section-title">소셜</h2>
         <div class="card">
           <a
-            href="https://gospelfix.github.io/landing"
+            href="https://gospelfix.vercel.app/layer"
             class="list-item"
             target="_blank"
             rel="noopener noreferrer"
           >
             <span class="item-label">GospelFix 홈페이지</span>
             <span class="item-value-group">
-              <span class="item-value">gospelfix.github.io/landing</span>
+              <span class="item-value">gospelfix.vercel.app/layer</span>
               <span class="item-arrow">
                 <svg
                   viewBox="0 0 24 24"
@@ -324,6 +299,10 @@
       프로필 공유하기
     </button>
 
+    <script src="./assets/js/hero.js"></script>
+    <script>
+      HeroModule.init();
+    </script>
     <script src="./assets/js/app.js"></script>
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
