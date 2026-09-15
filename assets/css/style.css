@@ -105,57 +105,17 @@ body {
   overflow-x: hidden;
 }
 
-/* Floating Blur Object — 넓은 화면에서 컨테이너 바깥 여백을 채우는 장식 효과 */
-body::before {
-  content: "";
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 320px;
-  height: 320px;
-  background: radial-gradient(
-    ellipse at 30% 30%,
-    #cfe8ff 0%,
-    #8fc1fb 30%,
-    #5b9bea 55%,
-    #3b7dd8 75%,
-    transparent 100%
-  );
-  filter: blur(70px);
-  opacity: 0.55;
-  border-radius: 50%;
-  z-index: 0;
-  pointer-events: none;
-  animation: float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-  0% {
-    transform: translate(-50%, -50%) translateY(0px) translateX(0px) rotate(0deg) scale(1);
-  }
-  25% {
-    transform: translate(-50%, -50%) translateY(-50px) translateX(50px) rotate(90deg) scale(1.15);
-  }
-  50% {
-    transform: translate(-50%, -50%) translateY(0px) translateX(0px) rotate(180deg) scale(1.2);
-  }
-  75% {
-    transform: translate(-50%, -50%) translateY(50px) translateX(-50px) rotate(270deg) scale(1.15);
-  }
-  100% {
-    transform: translate(-50%, -50%) translateY(0px) translateX(0px) rotate(360deg) scale(1);
-  }
-}
-
 .container {
   max-width: 390px;
-  margin: 0 auto;
+  margin: var(--space-3) auto 0;
   padding: 0 0 40px;
   min-height: 100vh;
   background: var(--color-bg);
   position: relative;
   z-index: 1;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(20, 21, 26, 0.12);
 }
 
 /* 프로필 히어로 — 컴포넌트 (HeroModule, mode: classic | gradient) */
@@ -163,8 +123,7 @@ body::before {
   position: relative;
 }
 
-/* mode="gradient" 전용 — 은은한 블러쉬 배경 악센트
-   body::before의 떠다니는 블러 오브젝트(float 애니메이션)와 동일한 모션(이동+회전+확대)을 적용.
+/* mode="gradient" 전용 — 은은한 블러쉬 배경 악센트, 이동+회전+확대 모션 적용.
    .hero-glow-zone은 흰 정보 카드(profile-hero-card)를 포함하지 않는, 실제로 핑크빛이 보이는
    영역(상단바~액션 버튼)만 감싸는 wrapper — 이 박스 크기를 기준으로만 그라데이션이 움직이도록
    범위를 한정한다. */
@@ -853,19 +812,7 @@ body::before {
     margin: 40px auto;
     border-radius: 24px;
     overflow: hidden;
-    box-shadow: 0 8px 32px rgba(20, 21, 26, 0.12);
     border: 1px solid var(--color-border);
-  }
-}
-
-/* Responsive - Desktop (오른쪽 1/4 위치) */
-@media (min-width: 1200px) {
-  body::before {
-    left: 25%;
-  }
-  .container {
-    margin-left: auto;
-    margin-right: calc(25% - 195px);
   }
 }
 
