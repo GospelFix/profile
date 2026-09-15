@@ -1,17 +1,5 @@
 [
   {
-    "id": 1,
-    "title": "Dear Tint Santa",
-    "titleSuffix": "",
-    "subtitle": "크리스마스 감성을 담은 브랜드",
-    "date": "",
-    "info": "Dear Tint Santa 공식 웹사이트",
-    "link": "https://deartintsanta.com",
-    "tags": ["브랜드", "쇼핑몰"],
-    "imageType": "image",
-    "imageUrl": "./assets/images/portfolio/deartintsanta.jpg"
-  },
-  {
     "id": 2,
     "title": "예작음악신문사",
     "titleSuffix": "",
@@ -24,15 +12,15 @@
     "imageUrl": "./assets/images/portfolio/yezakeumak.jpg"
   },
   {
-    "id": 3,
-    "title": "준비중",
-    "titleSuffix": " 입니다!",
-    "subtitle": "",
+    "id": 1,
+    "title": "Dear Tint Santa",
+    "titleSuffix": "",
+    "subtitle": "크리스마스 감성을 담은 브랜드",
     "date": "",
-    "info": "",
-    "link": "javascript:void(0);",
-    "tags": ["준비중", "Coming Soon"],
+    "info": "Dear Tint Santa 공식 웹사이트",
+    "link": "https://deartintsanta.com",
+    "tags": ["브랜드", "쇼핑몰"],
     "imageType": "image",
-    "imageUrl": "./assets/images/cards/default.png"
+    "imageUrl": "./assets/images/portfolio/deartintsanta.jpg"
   }
 ]
