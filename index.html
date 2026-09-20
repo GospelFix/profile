@@ -130,14 +130,7 @@
             <span class="item-value-group">
               <span class="item-value">thdbsgh3443@kakao.com</span>
               <span class="item-arrow">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <polyline points="9 18 15 12 9 6" />
-                </svg>
+                <i data-lucide="chevron-right"></i>
               </span>
             </span>
           </a>
@@ -146,14 +139,7 @@
             <span class="item-value-group">
               <span class="item-value">010-3388-2024</span>
               <span class="item-arrow">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <polyline points="9 18 15 12 9 6" />
-                </svg>
+                <i data-lucide="chevron-right"></i>
               </span>
             </span>
           </a>
@@ -174,14 +160,7 @@
             <span class="item-value-group">
               <span class="item-value">gospelfix.vercel.app/layer</span>
               <span class="item-arrow">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <polyline points="9 18 15 12 9 6" />
-                </svg>
+                <i data-lucide="chevron-right"></i>
               </span>
             </span>
           </a>
@@ -194,14 +173,7 @@
             <span class="item-value-group">
               <span class="item-value">@gospelfix_creative</span>
               <span class="item-arrow">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <polyline points="9 18 15 12 9 6" />
-                </svg>
+                <i data-lucide="chevron-right"></i>
               </span>
             </span>
           </a>
@@ -214,14 +186,7 @@
             <span class="item-value-group">
               <span class="item-value">pf.kakao.com/_CqKlX</span>
               <span class="item-arrow">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <polyline points="9 18 15 12 9 6" />
-                </svg>
+                <i data-lucide="chevron-right"></i>
               </span>
             </span>
           </a>
@@ -257,14 +222,7 @@
             target="_blank"
           >
             개발팀 소개
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
+            <i data-lucide="chevron-right"></i>
           </a>
         </div>
         <div class="swiper ministry-swiper">
@@ -285,43 +243,20 @@
     <!-- 하단 플로팅 버튼 — container 바깥에 위치해야 position:fixed가 뷰포트 기준으로 동작 -->
     <div class="floating-actions">
       <button class="contact-button">
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <circle cx="18" cy="5" r="3" />
-          <circle cx="6" cy="12" r="3" />
-          <circle cx="18" cy="19" r="3" />
-          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
-          <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-        </svg>
+        <i data-lucide="share-2"></i>
         프로필 공유하기
       </button>
       <button class="qr-trigger-button" aria-label="QR코드로 프로필 공유하기">
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          aria-hidden="true"
-          focusable="false"
-        >
-          <rect x="3" y="3" width="7" height="7" />
-          <rect x="14" y="3" width="7" height="7" />
-          <rect x="3" y="14" width="7" height="7" />
-          <line x1="14" y1="14" x2="14" y2="21" />
-          <line x1="21" y1="14" x2="21" y2="14.01" />
-          <line x1="14" y1="21" x2="21" y2="21" />
-          <line x1="17.5" y1="17.5" x2="17.5" y2="17.51" />
-        </svg>
+        <i data-lucide="qr-code" aria-hidden="true" focusable="false"></i>
       </button>
     </div>
 
+    <!-- Lucide Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/lucide@1/dist/umd/lucide.js"></script>
     <script src="./assets/js/hero.js"></script>
     <script>
       HeroModule.init();
+      lucide.createIcons();
     </script>
     <script src="./assets/js/app.js"></script>
     <!-- QR Code 라이브러리 -->

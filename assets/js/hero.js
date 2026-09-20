@@ -21,24 +21,17 @@ const HeroModule = (() => {
     homepageUrl: 'https://gospelfix.vercel.app/layer'
   };
 
+  // Lucide 아이콘 이름 매핑 (렌더링은 index.html에서 로드하는 lucide.createIcons()가 담당)
   const ICONS = {
-    chevronLeft: '<polyline points="15 18 9 12 15 6" />',
-    share:
-      '<path d="M12 15V3" /><polyline points="7 8 12 3 17 8" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7" />',
-    externalLink:
-      '<path d="M14 3h7v7" /><path d="M10 14 21 3" /><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5" />',
-    mail: '<rect x="3" y="5" width="18" height="14" rx="2" /><polyline points="3 7 12 13 21 7" />',
-    phone:
-      '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" />',
-    globe:
-      '<circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />'
+    chevronLeft: 'chevron-left',
+    share: 'share-2',
+    externalLink: 'external-link',
+    mail: 'mail',
+    phone: 'phone',
+    globe: 'globe'
   };
 
-  const icon = (name) => `
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      ${ICONS[name]}
-    </svg>
-  `;
+  const icon = (name) => `<i data-lucide="${ICONS[name]}"></i>`;
 
   const badgeBlock = (data) => `
     <div class="profile-hero-badge">
