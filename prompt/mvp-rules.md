@@ -6,7 +6,7 @@
 
 ## 기술 스택
 
-> 📁 참조: `@config/mvp-stack.yaml`
+> 📁 참조: `@docs/mvp-stack.yaml`
 
 ---
 

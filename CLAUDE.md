@@ -67,7 +67,7 @@ assets/data/*.json  →  CardsModule.loadCards()  →  Swiper 슬라이드 DOM �
 - JS 모듈 패턴: IIFE (`const Module = (() => { ... })();`) — 전역 변수 금지, 퍼블릭 API만 노출
 - 사용자 입력을 innerHTML에 삽입할 때 반드시 `escapeHtml()` 통과
 - CSS: 모바일 우선, `clamp()`로 폰트 크기, 터치 영역 최소 44px, CSS 변수로 색상/크기 관리
-- 색상/타이포/스페이싱 CSS 변수의 정의와 용도는 `config/design-system.md` 참조 (라이트 테마 고정, `--color-bg: #f4f5f7`)
+- 색상/타이포/스페이싱 CSS 변수의 정의와 용도는 `docs/design.md`(요약) 및 `docs/02-colors.md`~`docs/09-shadcn-tokens.md`(근거) 참조 (라이트 테마 고정, `--color-bg: #f4f5f7`)
 - 이미지는 `assets/images/` 하위에 위치
 
 ---

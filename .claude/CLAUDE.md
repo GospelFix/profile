@@ -14,14 +14,14 @@ updated: 2026-02-13
 
 ## 규칙
 
-1. 기술 스택은 `@config/mvp-stack.yaml` 참조
-2. 디자인 시스템은 `@config/design-system.md` 참조
+1. 기술 스택은 `@docs/mvp-stack.yaml` 참조
+2. 디자인 시스템은 `@docs/design.md` 참조 (근거는 `@docs/01-style-reference.md`~`@docs/09-shadcn-tokens.md`)
 3. MVP 수준 유지 - 최소 기능으로 빠르게 검증
 
 ---
 
 ## 개발 규칙
 
-> MVP 단계: `@prompt/mvp-rules.md` 및 `@config/mvp-stack.yaml` 참조
+> MVP 단계: `@prompt/mvp-rules.md` 및 `@docs/mvp-stack.yaml` 참조
 
 ---

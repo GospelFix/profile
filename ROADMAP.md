@@ -61,5 +61,5 @@
 
 | 파일                    | 설명          |
 | ----------------------- | ------------- |
-| `config/mvp-stack.yaml` | MVP 기술 스택 |
+| `docs/mvp-stack.yaml`   | MVP 기술 스택 |
 | `prompt/mvp-rules.md`   | MVP 개발 규칙 |
