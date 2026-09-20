@@ -79,12 +79,24 @@
   --space-10: 40px;
   --space-12: 48px;
 
-  /* 반경 */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
-  --radius-xl: 20px;
+  /* 반경 — 기준값(--radius)에서 파생. 개별 값을 덮어쓰지 않고 기준값만 조정한다 (docs/05-radius.md 참고) */
+  --radius: 16px;
+  --radius-sm: calc(var(--radius) - 10px);
+  --radius-md: calc(var(--radius) - 6px);
+  --radius-lg: calc(var(--radius) - 2px);
+  --radius-xl: calc(var(--radius) + 4px);
   --radius-full: 50%;
+
+  /* shadcn/ui 네이밍 별칭 — 실제 쓰는 것만 정의. 전체 매핑(--background/--foreground/--card 등)은
+     지금 당장 참조하는 코드가 없어 docs/09-shadcn-tokens.md에 문서로만 남기고 CSS에는 추가하지 않는다 */
+  --ring: var(--color-text);
+}
+
+/* 키보드 포커스 표시 — 기존에 없던 접근성 보강, 마우스 클릭 시에는 나타나지 않는다 */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
 }
 
 /* Base */
@@ -480,7 +492,7 @@ body {
   text-decoration: none;
   background: var(--color-chip-bg);
   border: 1px solid var(--color-border);
-  border-radius: 20px;
+  border-radius: var(--radius-xl);
   transition: all 0.2s ease;
 }
 
@@ -619,7 +631,7 @@ body {
   display: block;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: 16px;
+  border-radius: var(--radius);
   text-decoration: none;
   color: inherit;
   overflow: hidden;
@@ -710,7 +722,7 @@ body {
 .tag {
   display: inline-block;
   padding: 5px 10px;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   font-size: 10px;
   font-weight: 600;
 }
@@ -742,7 +754,7 @@ body {
   transform: translateX(-50%);
   z-index: 100;
   display: flex;
-  gap: 8px;
+  gap: var(--space-2);
   width: calc(min(100vw, 390px) - 48px);
 }
 
@@ -757,7 +769,7 @@ body {
   background: var(--color-text);
   color: var(--color-surface);
   border: none;
-  border-radius: 16px;
+  border-radius: var(--radius);
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
@@ -784,11 +796,11 @@ body {
   justify-content: center;
   min-width: 44px;
   min-height: 44px;
-  padding: 12px;
+  padding: var(--space-3);
   background: var(--color-surface);
   color: var(--color-text);
   border: 1px solid var(--color-border-strong);
-  border-radius: 16px;
+  border-radius: var(--radius);
   cursor: pointer;
   box-shadow:
     0 8px 32px rgba(20, 21, 26, 0.2),
@@ -882,8 +894,8 @@ body {
   width: 100%;
   max-width: min(100vw, 480px);
   background: var(--color-surface);
-  border-radius: 20px 20px 0 0;
-  padding: 16px 24px 24px;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  padding: var(--space-4) var(--space-6) var(--space-6);
   box-shadow: 0 -8px 32px rgba(20, 21, 26, 0.2);
   transition: transform 0.3s ease;
 }
@@ -895,21 +907,21 @@ body {
 .qr-sheet-handle {
   width: 40px;
   height: 4px;
-  margin: 0 auto 16px;
+  margin: 0 auto var(--space-4);
   background: var(--color-border-strong);
-  border-radius: 50%;
+  border-radius: var(--radius-full);
 }
 
 .qr-sheet-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 16px;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
 }
 
 .qr-sheet-title {
-  font-size: 20px;
+  font-size: var(--text-xl);
   font-weight: 700;
   color: var(--color-text);
 }
@@ -925,7 +937,7 @@ body {
   background: transparent;
   color: var(--color-text-secondary);
   border: none;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   cursor: pointer;
 }
 
@@ -938,16 +950,16 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: var(--space-3);
   text-align: center;
-  padding-bottom: 24px;
+  padding-bottom: var(--space-6);
 }
 
 .qr-sheet-canvas-wrap {
-  padding: 16px;
+  padding: var(--space-4);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: 14px;
+  border-radius: var(--radius-lg);
 }
 
 .qr-sheet-canvas-wrap canvas {
@@ -955,12 +967,12 @@ body {
 }
 
 .qr-sheet-desc {
-  font-size: 15px;
+  font-size: var(--text-base);
   color: var(--color-text-secondary);
 }
 
 .qr-sheet-url {
-  font-size: 12px;
+  font-size: var(--text-sm);
   color: var(--color-text-muted);
   word-break: break-all;
 }
@@ -972,7 +984,7 @@ body {
   background: var(--color-text);
   color: var(--color-surface);
   border: none;
-  border-radius: 16px;
+  border-radius: var(--radius);
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
