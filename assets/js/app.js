@@ -15,13 +15,14 @@ const App = (() => {
     shareBtn: null,
     heroShareBtns: null,
     profileImg: null,
-    toast: null
+    toast: null,
+    floatingActions: null
   };
 
   // Share Data
   const shareData = {
     title: '',
-    url: window.location.href
+    url: 'https://gospelfix.github.io/profile/'
   };
 
   /**
@@ -44,6 +45,7 @@ const App = (() => {
     elements.shareBtn = document.querySelector('.contact-button');
     elements.heroShareBtns = document.querySelectorAll('.hero-share-trigger');
     elements.profileImg = document.getElementById('profileImg');
+    elements.floatingActions = document.querySelector('.floating-actions');
   };
 
   /**
@@ -79,13 +81,13 @@ const App = (() => {
    */
   const positionFloatingBtn = () => {
     const container = document.querySelector('.container');
-    if (!container || !elements.shareBtn) return;
+    if (!container || !elements.floatingActions) return;
 
     const { left, width } = container.getBoundingClientRect();
     const btnWidth = width - 48; // 양쪽 24px 패딩
-    elements.shareBtn.style.left = `${left + 24}px`;
-    elements.shareBtn.style.width = `${btnWidth}px`;
-    elements.shareBtn.style.transform = 'none';
+    elements.floatingActions.style.left = `${left + 24}px`;
+    elements.floatingActions.style.width = `${btnWidth}px`;
+    elements.floatingActions.style.transform = 'none';
   };
 
   /**
@@ -204,7 +206,8 @@ const App = (() => {
 
   // Public API
   return {
-    init
+    init,
+    showToast
   };
 })();
 

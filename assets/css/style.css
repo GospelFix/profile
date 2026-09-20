@@ -182,6 +182,11 @@ body {
   .hero-glow-zone::before {
     animation: none;
   }
+
+  .qr-sheet-backdrop,
+  .qr-sheet {
+    transition: none;
+  }
 }
 
 /* mode="classic" 전용 — 전체 프로필 사진 */
@@ -728,18 +733,26 @@ body {
   }
 }
 
-/* Contact Button — 하단 고정 플로팅 버튼 */
-.contact-button {
+/* Floating Actions — 하단 고정 wrapper (공유 버튼 + QR 버튼), 배치(position:fixed)는
+   wrapper가 담당하고 내부 버튼은 flex 아이템으로만 동작한다 */
+.floating-actions {
   position: fixed;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 100;
   display: flex;
+  gap: 8px;
+  width: calc(min(100vw, 390px) - 48px);
+}
+
+/* Contact Button */
+.contact-button {
+  flex: 1;
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  width: calc(min(100vw, 390px) - 48px);
   padding: 16px 24px;
   background: var(--color-text);
   color: var(--color-surface);
@@ -761,6 +774,35 @@ body {
 .contact-button svg {
   width: 18px;
   height: 18px;
+}
+
+/* QR Trigger Button — 아이콘 전용, secondary 톤 */
+.qr-trigger-button {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 12px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border-strong);
+  border-radius: 16px;
+  cursor: pointer;
+  box-shadow:
+    0 8px 32px rgba(20, 21, 26, 0.2),
+    0 2px 8px rgba(20, 21, 26, 0.1);
+  transition: all 0.2s ease;
+}
+
+.qr-trigger-button:active {
+  transform: scale(0.98);
+}
+
+.qr-trigger-button svg {
+  width: 20px;
+  height: 20px;
 }
 
 /* Footer — 플로팅 버튼 높이(약 56px) + 여백(28px) 확보 */
@@ -806,6 +848,141 @@ body {
   transform: translateX(-50%) translateY(0);
 }
 
+/* QR Bottom Sheet — qr.js가 런타임에 생성하는 DOM. .toast(z-index:1000)보다 위에 뜬다 */
+.qr-sheet-root {
+  position: fixed;
+  inset: 0;
+  z-index: 1001;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.qr-sheet-root.is-open {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.qr-sheet-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 21, 26, 0.45);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.qr-sheet-root.is-open .qr-sheet-backdrop {
+  opacity: 1;
+}
+
+.qr-sheet {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 100%);
+  width: 100%;
+  max-width: min(100vw, 480px);
+  background: var(--color-surface);
+  border-radius: 20px 20px 0 0;
+  padding: 16px 24px 24px;
+  box-shadow: 0 -8px 32px rgba(20, 21, 26, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.qr-sheet-root.is-open .qr-sheet {
+  transform: translate(-50%, 0);
+}
+
+.qr-sheet-handle {
+  width: 40px;
+  height: 4px;
+  margin: 0 auto 16px;
+  background: var(--color-border-strong);
+  border-radius: 50%;
+}
+
+.qr-sheet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.qr-sheet-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.qr-sheet-close {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin: -10px;
+  background: transparent;
+  color: var(--color-text-secondary);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.qr-sheet-close svg {
+  width: 20px;
+  height: 20px;
+}
+
+.qr-sheet-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  padding-bottom: 24px;
+}
+
+.qr-sheet-canvas-wrap {
+  padding: 16px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+}
+
+.qr-sheet-canvas-wrap canvas {
+  display: block;
+}
+
+.qr-sheet-desc {
+  font-size: 15px;
+  color: var(--color-text-secondary);
+}
+
+.qr-sheet-url {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  word-break: break-all;
+}
+
+.qr-sheet-save-btn {
+  width: 100%;
+  min-height: 44px;
+  padding: 16px 24px;
+  background: var(--color-text);
+  color: var(--color-surface);
+  border: none;
+  border-radius: 16px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.qr-sheet-save-btn:active {
+  transform: scale(0.98);
+}
+
 /* Responsive - Tablet (가운데 정렬) */
 @media (min-width: 768px) {
   .container {
@@ -823,6 +1000,13 @@ body {
   }
 
   .contact-button:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 12px 40px rgba(20, 21, 26, 0.25),
+      0 4px 12px rgba(20, 21, 26, 0.12);
+  }
+
+  .qr-trigger-button:hover {
     transform: translateY(-2px);
     box-shadow:
       0 12px 40px rgba(20, 21, 26, 0.25),
