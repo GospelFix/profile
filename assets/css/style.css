@@ -85,7 +85,7 @@
   --radius-md: calc(var(--radius) - 6px);
   --radius-lg: calc(var(--radius) - 2px);
   --radius-xl: calc(var(--radius) + 4px);
-  --radius-full: 50%;
+  --radius-full: 9999px;
 
   /* shadcn/ui 네이밍 별칭 — 실제 쓰는 것만 정의. 전체 매핑(--background/--foreground/--card 등)은
      지금 당장 참조하는 코드가 없어 docs/09-shadcn-tokens.md에 문서로만 남기고 CSS에는 추가하지 않는다 */
