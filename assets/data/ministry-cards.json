@@ -1,5 +1,17 @@
 [
   {
+    "id": 4,
+    "title": "홀리윈 2026",
+    "titleSuffix": "",
+    "subtitle": "전도 대상자 기도",
+    "date": "2026.10.24 (토)",
+    "info": "전도 대상자를 등록하고 함께 기도해요",
+    "link": "https://gbc-sys.github.io/holy.win.2026/",
+    "tags": ["홀리윈", "전도"],
+    "imageType": "image",
+    "imageUrl": "./assets/images/portfolio/holywin.png"
+  },
+  {
     "id": 3,
     "title": "몽골 단기선교",
     "titleSuffix": "",
