@@ -48,10 +48,10 @@
   --color-text-secondary: rgba(20, 21, 26, 0.55);
   --color-text-muted: rgba(20, 21, 26, 0.35);
 
-  /* 히어로 배경 악센트 - 은은한 블러쉬 그라데이션 (mode: gradient) */
-  --color-hero-glow-1: #f6ddd0;
-  --color-hero-glow-2: #ecdcd7;
-  --color-hero-glow-3: #eef0f0;
+  /* 히어로 배경 악센트 - 진한 테라코타 그라데이션 (mode: gradient) */
+  --color-hero-glow-1: #f0a878;
+  --color-hero-glow-2: #d9713f;
+  --color-hero-glow-3: #c98a6a;
 
   /* 타이포그래피 */
   --text-xs: 10px;
@@ -135,8 +135,8 @@ body {
   position: relative;
 }
 
-/* mode="gradient" 전용 — 은은한 블러쉬 배경 악센트, 이동+회전+확대 모션 적용.
-   .hero-glow-zone은 흰 정보 카드(profile-hero-card)를 포함하지 않는, 실제로 핑크빛이 보이는
+/* mode="gradient" 전용 — 진한 테라코타 배경 악센트, 이동+회전+확대 모션 적용.
+   .hero-glow-zone은 흰 정보 카드(profile-hero-card)를 포함하지 않는, 실제로 그라데이션이 보이는
    영역(상단바~액션 버튼)만 감싸는 wrapper — 이 박스 크기를 기준으로만 그라데이션이 움직이도록
    범위를 한정한다. */
 .hero-glow-zone {
@@ -281,6 +281,7 @@ body {
   text-align: center;
   font-size: var(--text-sm);
   color: var(--color-text-muted);
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.4);
 }
 
 /* mode="gradient" 전용 — 액션 버튼 행 (이메일 / 전화 / 공유 / 홈페이지) */
@@ -325,6 +326,7 @@ body {
   font-size: var(--text-xs);
   font-weight: 600;
   color: var(--color-text-secondary);
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.4);
 }
 
 /* 공용 — 정보 카드 (badge, role, tags) */
