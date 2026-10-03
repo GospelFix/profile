@@ -9,7 +9,7 @@
     "link": "http://yezakeumak.com",
     "tags": ["음악", "신문사"],
     "imageType": "image",
-    "imageUrl": "./assets/images/portfolio/yezakeumak.jpg"
+    "imageUrl": "./assets/images/portfolio/yezakeumak.avif"
   },
   {
     "id": 1,
@@ -21,6 +21,6 @@
     "link": "https://deartintsanta.com",
     "tags": ["브랜드", "쇼핑몰"],
     "imageType": "image",
-    "imageUrl": "./assets/images/portfolio/deartintsanta.jpg"
+    "imageUrl": "./assets/images/portfolio/deartintsanta.avif"
   }
 ]

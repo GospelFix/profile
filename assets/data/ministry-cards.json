@@ -9,7 +9,7 @@
     "link": "https://gbc-sys.github.io/holy.win.2026/",
     "tags": ["홀리윈", "전도"],
     "imageType": "image",
-    "imageUrl": "./assets/images/portfolio/holywin.png"
+    "imageUrl": "./assets/images/portfolio/holywin.avif"
   },
   {
     "id": 3,
@@ -21,7 +21,7 @@
     "link": "https://mongolia-employment.vercel.app/",
     "tags": ["몽골", "단기선교"],
     "imageType": "image",
-    "imageUrl": "./assets/images/portfolio/mongolia.png"
+    "imageUrl": "./assets/images/portfolio/mongolia.avif"
   },
   {
     "id": 2,
