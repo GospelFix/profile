@@ -32,6 +32,7 @@
       "command": "npx",
       "args": ["-y", "mcp-shrimp-task-manager"],
       "env": {
+        "DATA_DIR": "/Users/mac/Documents/work/GospelFix/profile/.shrimp_data",
         "TEMPLATES_USE": "en",
         "ENABLE_GUI": "true"
       }

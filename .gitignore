@@ -145,3 +145,6 @@ vite.config.ts.timestamp-*
 
 .claude
 .claude/*
+
+# shrimp-task-manager MCP 서버 데이터
+.shrimp_data/
