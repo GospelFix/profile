@@ -1,5 +1,17 @@
 [
   {
+    "id": 3,
+    "title": "고품격대패",
+    "titleSuffix": "",
+    "subtitle": "대패의 격이 다르다",
+    "date": "",
+    "info": "고품격대패 공식 웹사이트",
+    "link": "https://xn--i89a2dz9q2p1bhpb.com/",
+    "tags": ["프랜차이즈", "외식업"],
+    "imageType": "image",
+    "imageUrl": "./assets/images/portfolio/gopoomgyeok.avif"
+  },
+  {
     "id": 2,
     "title": "예작음악신문사",
     "titleSuffix": "",
