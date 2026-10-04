@@ -148,3 +148,6 @@ vite.config.ts.timestamp-*
 
 # shrimp-task-manager MCP 서버 데이터
 .shrimp_data/
+
+# Serena MCP 서버 로컬 프로젝트 설정
+.serena/
