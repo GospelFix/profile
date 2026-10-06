@@ -9,7 +9,7 @@ const HeroModule = (() => {
 
   const HERO_DATA = {
     name: '소윤호',
-    imageUrl: './assets/images/propil_v1.png',
+    imageUrl: './assets/images/propil_v1.avif',
     subtitle: 'GospelFix 대표 · AI Agent 자동화 솔루션',
     company: 'GospelFix',
     companyEn: 'AI AGENT AUTOMATION',
