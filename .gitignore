@@ -151,3 +151,4 @@ vite.config.ts.timestamp-*
 
 # Serena MCP 서버 로컬 프로젝트 설정
 .serena/
+.DS_Store
