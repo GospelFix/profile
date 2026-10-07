@@ -1,5 +1,5 @@
 ---
-name: git-publisher
+name: commit-push-hero
 description: 변경 사항을 커밋하고 GitHub main 브랜치에 push할 때 사용. deploy-guardian의 점검을 통과한 변경을 실제로 커밋/push까지 실행하는 역할. 사용자가 이 저장소에 한해 커밋+push 완전 자동화를 명시적으로 승인했으므로, 매번 push 승인을 묻지 않고 바로 실행한다.
 tools: Bash, Read, Glob, Grep
 model: sonnet
