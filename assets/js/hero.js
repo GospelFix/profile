@@ -28,10 +28,26 @@ const HeroModule = (() => {
     externalLink: 'external-link',
     mail: 'mail',
     phone: 'phone',
-    globe: 'globe'
+    globe: 'globe',
+    clock: 'clock',
+    chevronDown: 'chevron-down'
   };
 
   const icon = (name) => `<i data-lucide="${ICONS[name]}"></i>`;
+
+  // 트리거 버튼만 렌더링한다. 요일별 목록 패널은 hours.js(HoursModule)가 document.body에 직접
+  // 생성해 붙인다 — .hero-glow-zone의 overflow:hidden(그라데이션 배경 차단용)에 패널이
+  // 잘리는 것을 피하기 위해 qr.js의 Bottom Sheet와 동일하게 body 레벨에 렌더링하는 방식을 따른다.
+  const hoursBlock = () => `
+    <div class="hero-hours">
+      <button type="button" class="hero-hours-trigger" aria-expanded="false" aria-controls="heroHoursPanel">
+        ${icon('clock')}
+        <span class="hero-hours-status" data-hours-status></span>
+        <span class="hero-hours-today" data-hours-today></span>
+        <i data-lucide="${ICONS.chevronDown}" class="hero-hours-chevron"></i>
+      </button>
+    </div>
+  `;
 
   const badgeBlock = (data) => `
     <div class="profile-hero-badge">
@@ -70,6 +86,7 @@ const HeroModule = (() => {
     /** 새 디자인: 은은한 그라데이션 배경 + 원형 아바타 + 액션 버튼 행 */
     gradient: (data) => `
       <div class="hero-glow-zone">
+      <video class="hero-bg-video" src="./assets/video/video.mp4" autoplay muted loop playsinline></video>
       <div class="hero-topbar">
         <button type="button" class="hero-icon-btn hero-back-btn" aria-label="뒤로가기">
           ${icon('chevronLeft')}
@@ -111,6 +128,8 @@ const HeroModule = (() => {
           <span class="hero-action-label">홈페이지</span>
         </a>
       </div>
+
+      ${hoursBlock()}
       </div>
 
       <div class="profile-hero-card">
