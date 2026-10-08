@@ -19,6 +19,8 @@
     "date": "",
     "info": "예작음악신문사 공식 웹사이트",
     "link": "http://yezakeumak.com",
+    "unavailable": true,
+    "unavailableMessage": "계약이 만료되어 더 이상 운영하지 않습니다.",
     "tags": ["음악", "신문사"],
     "imageType": "image",
     "imageUrl": "./assets/images/portfolio/yezakeumak.avif"

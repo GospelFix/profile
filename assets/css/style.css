@@ -758,6 +758,16 @@ body {
   transform: scale(1.05);
 }
 
+/* 운영 종료 카드(unavailable:true) — 흐릿하게 처리해 더 이상 접속 가능한 링크가 아님을 미리 알린다 */
+.ministry-card-link--unavailable {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.ministry-card-link--unavailable:hover .ministry-card-image.has-image img {
+  transform: none;
+}
+
 .ministry-card-content {
   padding: 16px;
 }

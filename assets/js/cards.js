@@ -60,6 +60,8 @@ const CardsModule = (() => {
       subtitle: card.subtitle || '',
       info: card.info || '',
       link: card.link || '#',
+      unavailable: card.unavailable === true,
+      unavailableMessage: card.unavailableMessage || '',
       tags: Array.isArray(card.tags) ? card.tags : [],
       date: card.date || null,
       titleSuffix: card.titleSuffix || null,
@@ -187,14 +189,20 @@ const CardsModule = (() => {
     const titleHtml = renderTitle(normalizedCard);
     const dateHtml = renderDate(normalizedCard);
 
-    const isExternal = normalizedCard.link.startsWith('http');
+    const isExternal = !normalizedCard.unavailable && normalizedCard.link.startsWith('http');
     const targetAttr = isExternal ? 'target="_blank"' : '';
-    const escapedLink = escapeHtml(normalizedCard.link);
+    const escapedLink = normalizedCard.unavailable ? '#' : escapeHtml(normalizedCard.link);
     const escapedSubtitle = escapeHtml(normalizedCard.subtitle);
     const escapedInfo = escapeHtml(normalizedCard.info);
+    const linkClass = normalizedCard.unavailable
+      ? 'ministry-card-link ministry-card-link--unavailable'
+      : 'ministry-card-link';
+    const unavailableAttr = normalizedCard.unavailable
+      ? ` data-unavailable-message="${escapeHtml(normalizedCard.unavailableMessage)}"`
+      : '';
 
     return `
-      <a href="${escapedLink}" class="ministry-card-link" ${targetAttr}>
+      <a href="${escapedLink}" class="${linkClass}" ${targetAttr}${unavailableAttr}>
         ${imageHtml}
         <div class="ministry-card-content">
           <p class="ministry-card-subtitle">${escapedSubtitle}</p>
@@ -205,6 +213,19 @@ const CardsModule = (() => {
         </div>
       </a>
     `;
+  };
+
+  /**
+   * 운영 종료된 카드(unavailable:true) 클릭 시 실제 링크로 이동하는 대신 안내 토스트를 띄운다
+   * @param {HTMLElement} container - 카드가 렌더링된 컨테이너
+   */
+  const bindUnavailableCards = (container) => {
+    container.addEventListener('click', (event) => {
+      const link = event.target.closest('.ministry-card-link--unavailable');
+      if (!link) return;
+      event.preventDefault();
+      showErrorToast(link.dataset.unavailableMessage || '현재 이용할 수 없습니다');
+    });
   };
 
   /**
@@ -276,6 +297,8 @@ const CardsModule = (() => {
         slide.innerHTML = renderCardHTML(card);
         container.appendChild(slide);
       });
+
+      bindUnavailableCards(container);
 
       // Swiper 초기화
       initSwiper(swiperSelector);
